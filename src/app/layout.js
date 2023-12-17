@@ -1,8 +1,8 @@
-import { inter } from "./fonts";
-import Footer from "./footer";
 import "./globals.css";
+import { noto_serif_display, inter } from "./fonts";
+import Footer from "./footer";
 
-const fonts_variables = `${inter.className} font-sans`;
+const fonts_variables = `${noto_serif_display.className} ${inter.className}`;
 
 export const metadata = {
   title: "Alvigène - Soins de beauté",
