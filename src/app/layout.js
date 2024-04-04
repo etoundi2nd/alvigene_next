@@ -1,6 +1,7 @@
 import "./globals.css";
 import { noto_serif_display, inter } from "./fonts";
-import Footer from "./footer";
+// import Footer from "./footer";
+import Footer from './components/footer'
 
 const fonts_variables = `${noto_serif_display.className} ${inter.className}`;
 
