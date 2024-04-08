@@ -1,14 +1,14 @@
 export const products =[
     {
         url: "/products/soaps/alvigene_soap_bar_snail_slime_cover_green-3ca50772919a9b82a4139ed9aacb5c835f23ce0b75034e7e922453a2dc9a13ec.jpg",
-        title: "Savons Bio Alvigène à la bave pure d'escargot",
-        description: "Notre savon orignal à la bave pure et la coquille d'escargot",
+        title: "Savons Bio Alvigène à la bave pure d&#39;escargot",
+        description: "Notre savon orignal à la bave pure et la coquille d&#39;escargot",
         price: 1000
     },
 
     {
         url: "/products/soaps/alvigene_soap_bar_snail_slime_and_honey_cover-892cd9cf08e8cc135a0dd8487ad6b9b1f7ca113ba94674f1fccd8bb7573ffa83.jpg",
-        title: "Savons Bio Alvigène à la bave d'escargot + miel",
+        title: "Savons Bio Alvigène à la bave d&#39;escargot + miel",
         description: "Notre savon orignal à la bave pure et la coquille d'escargot et du miel",
         price: 1000
     },
