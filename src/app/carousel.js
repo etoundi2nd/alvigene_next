@@ -1,14 +1,12 @@
 var currentValue = 0;
-var slideTargets = 0
+var slideTargets = 0;
 
-if (typeof document !== 'undefined'){
+if (typeof document !== "undefined") {
   var slideTargets = document.querySelectorAll("[data-slide]");
   var buttons = document.querySelectorAll('[data-action="showNext"]');
-
-  
 }
 
-console.log(slideTargets)
+console.log(slideTargets);
 function correctValue(value) {
   if (value >= slideTargets.length) {
     return (currentValue = 0);
@@ -57,23 +55,6 @@ function handleMobileMenu() {
 
 handleMobileMenu();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // async function process() {
 // //     try {
 // //         const name = await data;
@@ -85,7 +66,7 @@ handleMobileMenu();
 // //     }finally{
 // //         console.log('From Finally')
 // //     }
-    
+
 // // }
 
 // // process();
@@ -110,7 +91,7 @@ handleMobileMenu();
 //             <div className='absolute top-0 left-0 h-full w-full flex'>
 //               <h2 className='text-4xl font-bold text-white my-auto w-full'>3</h2>
 //             </div>
-//           </li> 
+//           </li>
 //         </ul>
 //         <button onClick="prev()" className='bg-white p-3 rounded-full bg-opacity-80 shadow-lg'>
 //         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -126,8 +107,6 @@ handleMobileMenu();
 //         </button>
 //       </div>
 // </section>
-
-
 
 // currentSlideID = 1
 

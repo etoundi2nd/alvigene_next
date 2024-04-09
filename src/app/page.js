@@ -1,31 +1,25 @@
-
 // 'use client'
 
 // import { usePathname } from 'next/navigation'
 // import Link from 'next/link'
-import Navbar from './components/navbar'
-import Image from 'next/image'
-import {products} from './utils/products'
-import Product from './components/product'
-import Service from './components/service'
-import { services } from './utils/services'
+import Navbar from "./components/navbar";
+import Image from "next/image";
+import { products } from "./utils/products";
+import Product from "./components/product";
+import Service from "./components/service";
+import { services } from "./utils/services";
 // import MyCarouselComponent   from './components/carousel'
 
-
- 
-
 const navigation = [
-  { name: 'Product', href: '#product' },
-  { name: 'Testimonies', href: '#testimonie' },
- 
-]
- 
+  { name: "Product", href: "#product" },
+  { name: "Testimonies", href: "#testimonie" },
+];
+
 export default function Home() {
   // const pathname = usePathname()
- 
-  return ( 
-    
-     <main className="main">
+
+  return (
+    <main className="main">
       {/* Begin Navbar component */}
       <Navbar />
       {/* End Navbar component */}
@@ -36,20 +30,20 @@ export default function Home() {
           <div class="content">
             <h1 class="index-hero--title">
               <span class="text-bg-hero">
-                Donnez à votre peau<br />
+                Donnez à votre peau
+                <br />
                 <em>des soins</em>
-                nécessaires <br />
-                & mérités.
+                nécessaires <br />& mérités.
               </span>
             </h1>
             <div class="index-hero--description">
               <span class="text-bg-hero">
                 Symbole universel du naturel, de la pureté et de l'uniformité du
                 tint,
-                <strong class="text-dark-green bg-citrus-green px-0-5"
-                  >les savons Alvigène doux et hydratants à la bave pure
-                  d'escargot</strong
-                >
+                <strong class="text-dark-green bg-citrus-green px-0-5">
+                  les savons Alvigène doux et hydratants à la bave pure
+                  d'escargot
+                </strong>
                 évoquent des sentiments positifs.
               </span>
             </div>
@@ -72,7 +66,7 @@ export default function Home() {
             des soins nécessaires <br />
             & mérités.</h1>
               <h5 className="text-white md:text-start mx-4 py-10">
-                Symbole universel du naturel, de la pureté et de l'uniformité<br /> du tint, 
+                Symbole universel du naturel, de la pureté et de l'uniformité<br /> du tint,
                 <strong className='bg-lime-400 border'>les savons Alvigène doux et hydratants à la bave <br />pure d'escargot </strong>
                 évoquent des sentiments positifs.
               </h5>
@@ -104,15 +98,14 @@ export default function Home() {
       <div class="index-hero-banner">
         <div class="container index-hero-banner--content">
           <div class="index-hero-banner--infos">
-          {
-              services.map(s => <Service 
-                                  key={s.path_icon} 
-                                  path_icon={s.path_icon} 
-                                  title={s.title} 
-                                  description={s.description} 
-                                />
-                            )
-            }
+            {services.map((s) => (
+              <Service
+                key={s.path_icon}
+                path_icon={s.path_icon}
+                title={s.title}
+                description={s.description}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -123,7 +116,8 @@ export default function Home() {
         <div class="container">
           <div class="index-products--content">
             <h3>
-              Collection<br />
+              Collection
+              <br />
               Speciale
             </h3>
             <div class="description">
@@ -131,16 +125,15 @@ export default function Home() {
             </div>
           </div>
           <div class="products-list pt-2 pb-4">
-          {
-            products.map(p => <Product 
-                                key={p.title} 
-                                url={p.url} 
-                                title={p.title} 
-                                description={p.description} 
-                                price={p.price} 
-                              />
-                        )         
-          }
+            {products.map((p) => (
+              <Product
+                key={p.title}
+                url={p.url}
+                title={p.title}
+                description={p.description}
+                price={p.price}
+              />
+            ))}
             {/* <div class="card card-product">
               <div class="card-img">
                 <img
@@ -319,14 +312,14 @@ export default function Home() {
         </div>
         <div id='products' className='gap-3 flex flex-col grid md:grid-cols-3 justify-between'>
           {
-            products.map(p => <Product 
-                                key={p.title} 
-                                url={p.url} 
-                                title={p.title} 
-                                description={p.description} 
-                                price={p.price} 
+            products.map(p => <Product
+                                key={p.title}
+                                url={p.url}
+                                title={p.title}
+                                description={p.description}
+                                price={p.price}
                               />
-                        )         
+                        )
           }
         </div>
       </div> */}
@@ -370,7 +363,6 @@ export default function Home() {
       </div>
       {/* End composition section  */}
 
-
       {/* Begin carrousel section*/}
       <div id="testimonies" class="index-our-customers pb-4">
         <div class="container text-center">
@@ -398,7 +390,6 @@ export default function Home() {
                 <div class="mb-1">
                   <img
                     class="avatar"
-                    
                     src="/testimonies/rose-7710c7692c3f86f56b2e6d2608930bf47b47a350e7ebedb8b8ed38fa14af7943.png"
                   />
                 </div>
@@ -421,7 +412,6 @@ export default function Home() {
                 <div class="mb-1">
                   <img
                     class="avatar"
-                   
                     src="/testimonies/melissa-45acc3babdd4e95f824f5025739d01859969a24d8790a95550780dda616f3320.png"
                   />
                 </div>
@@ -442,7 +432,6 @@ export default function Home() {
                 <div class="mb-1">
                   <img
                     class="avatar"
-                    
                     src="/testimonies/ashley-7de04d7156f3e7a5e4fc20da6480f1773776d287780a1877deaf73f95a9c3733.png"
                   />
                 </div>
@@ -462,7 +451,6 @@ export default function Home() {
                 <div class="mb-1">
                   <img
                     class="avatar"
-                    
                     src="/testimonies/arielle-9743743ba24c143858aa92c317dd65871aa383f324a790f9595993aa246f351a.png"
                   />
                 </div>
@@ -482,12 +470,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        </div>
-     {/* End carrousel section*/}
-  
-      
-      </main> 
-    
-
+      </div>
+      {/* End carrousel section*/}
+    </main>
   );
 }
