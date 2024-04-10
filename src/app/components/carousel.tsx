@@ -1,98 +1,87 @@
-// components/Carousel.js
 import React from 'react';
 import { useEffect } from 'react';
 import Image from 'next/image';
 
-function Carousel() {
+export default function Carousel({url, name, comment, city}) {
   useEffect(() => {
     // Your JavaScript code related to carousel initialization or interactions
+    var currentValue = 0;
+    var slideTargets = document.querySelectorAll("[data-slide]");
+    var buttons = document.querySelectorAll('[data-action="showNext"]');
+
+    function correctValue(value) {
+      if (value >= slideTargets.length) {
+        return (currentValue = 0);
+      } else if (value < 0) {
+        return (currentValue = slideTargets.length - 1);
+      } else {
+        return value;
+      }
+    }
+
+    function showAny(value) {
+      slideTargets[correctValue(value)].classList.remove("d-none");
+    }
+
+    function hideAny(value) {
+      slideTargets[correctValue(value)].classList.add("d-none");
+    }
+
+    function handleTestimonials() {
+      showAny(currentValue);
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          hideAny(currentValue);
+          // if (!(event.target instanceof HTMLButtonElement)) {
+          //   return;
+          // }
+          currentValue += parseInt(event.currentTarget.dataset.changeBy);
+          showAny(currentValue);
+        });
+      });
+    }
+
+    handleTestimonials();
+
+    // Mobile Menu
+    function handleMobileMenu() {
+      var menuTrigger = document.querySelector(
+        '[data-action="click->marketing--mobile#toggleMenu"]'
+      );
+      var mobileMenu = document.querySelector(
+        '[data-marketing--mobile-target="menu"]'
+      );
+      menuTrigger.addEventListener("click", (event) => {
+        mobileMenu.classList.toggle("d-md-block");
+      });
+    }
+
+    handleMobileMenu();
   }, []);
 
   return (
-    <div id="controls-carousel" className="w-full" data-carousel="static">
-      <div className="h-56 overflow-hidden rounded-lg md:h-96">
-
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <Image width={200}  height={200} src="/products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-        </div>
-
-        <div className="hidden duration-700 ease-in-out" data-carousel-item="active">
-          <Image width={200}  height={200} src="/products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-        </div>
-
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <Image width={200}  height={200} src="/products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-        </div>
-
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <Image width={200}  height={200} src="/products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-        </div>
-
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <Image width={200}  height={200} src="/products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-        </div>
+    <div
+      className="main-customer d-none"
+      id="main-customer-0"
+      data-slide="slide"
+    >
+      <div className="message py-1">
+        {comment}
       </div>
-
-      <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-          <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-          </svg>
-          <span className="sr-only">Previous</span>
-        </span>
-      </button>
-      <button type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-          <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-          </svg>
-          <span className="sr-only">Next</span>
-        </span>
-      </button>
+      <div className="customer-details py-2">
+        <div className="mb-1">
+          <Image
+            width={200}
+            height={200}
+            className="avatar"
+            src={url}
+            alt="rose-image"
+          />
+        </div>
+        <h5>{name}</h5>
+        <em className="text-gray-500">{city}</em>
+      </div>
     </div>
   );
 }
-
-export default Carousel;
-
-{/* <div id="controls-carousel" className="relative w-full" data-carousel="static">
-<div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-    
-  <div className="hidden duration-700 ease-in-out" data-carousel-item>
-    <img src="products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-  </div>
-  
-  <div className="hidden duration-700 ease-in-out" data-carousel-item="active">
-    <img src="products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-  </div>
-  
-  <div className="hidden duration-700 ease-in-out" data-carousel-item>
-    <img src="products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-  </div>
-  
-  <div className="hidden duration-700 ease-in-out" data-carousel-item>
-    <img src="products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-  </div>
-  
-  <div className="hidden duration-700 ease-in-out" data-carousel-item>
-    <img src="products/gels/alvigene-shower-gel-honey-442bd1b1657c90bde0ea21403b4cf3112da0b173f62dae4031724d0d7cd200ff.png" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-  </div>
-</div>
-
-<button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-        <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-        </svg>
-        <span className="sr-only">Previous</span>
-    </span>
-</button>
-<button type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-        <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-        </svg>
-        <span className="sr-only">Next</span>
-    </span>
-</button>
-</div> */}
