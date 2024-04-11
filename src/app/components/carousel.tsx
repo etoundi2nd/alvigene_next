@@ -1,8 +1,8 @@
-import React from 'react';
-import { useEffect } from 'react';
-import Image from 'next/image';
+import React from "react";
+import { useEffect } from "react";
+import Image from "next/image";
 
-export default function Carousel({url, name, comment, city}) {
+export default function Carousel({ url, name, comment, city }) {
   useEffect(() => {
     // Your JavaScript code related to carousel initialization or interactions
     var currentValue = 0;
@@ -66,9 +66,7 @@ export default function Carousel({url, name, comment, city}) {
       id="main-customer-0"
       data-slide="slide"
     >
-      <div className="message py-1">
-        {comment}
-      </div>
+      <div className="message py-1">{comment}</div>
       <div className="customer-details py-2">
         <div className="mb-1">
           <Image

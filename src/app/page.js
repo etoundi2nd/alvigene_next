@@ -1,13 +1,12 @@
-'use client'
-import Navbar from './components/navbar'
-import Image from 'next/image'
-import {products_soaps, products_gels} from './utils/products'
-import Product from './components/product'
-import Service from './components/service'
-import { services } from './utils/services'
-import Carousel from './components/carousel'
-import {testimonies} from './utils/testimonies'
-
+"use client";
+import Navbar from "./components/navbar";
+import Image from "next/image";
+import { products_soaps, products_gels } from "./utils/products";
+import Product from "./components/product";
+import Service from "./components/service";
+import { services } from "./utils/services";
+import Carousel from "./components/carousel";
+import { testimonies } from "./utils/testimonies";
 
 const navigation = [
   { name: "Product", href: "#product" },
@@ -15,43 +14,46 @@ const navigation = [
 ];
 
 const imagestyle = {
-  width: '100%',
-  height: 'auto',
-}
+  width: "100%",
+  height: "auto",
+};
 export default function Home() {
   // const pathname = usePathname()
- 
-  return ( 
+
+  return (
     <>
       <main className="main">
         {/* Begin Navbar component */}
         <Navbar />
         {/* End Navbar component */}
-     
+
         {/* Begin Jumbottron component  */}
         <div className="index-hero">
           <div className="container index-hero--content">
             <div className="content">
               <h1 className="index-hero--title">
                 <span className="text-bg-hero">
-                  Donnez à votre peau<br />
-                  <em>des soins</em>
-                   nécessaires <br />& mérités.
+                  Donnez à votre peau <br /> <em>des soins</em> nécessaires{" "}
+                  <br />& mérités.
                 </span>
               </h1>
               <div className="index-hero--description">
                 <span className="text-bg-hero">
-                  Symbole universel du naturel, de la pureté et de l'uniformité du
-                  tint,
-                  <strong className="text-dark-green bg-citrus-green px-0-5"
-                    >les savons Alvigène doux et hydratants à la bave pure
-                    d'escargot</strong
-                  >
+                  Symbole universel du naturel, de la pureté et de l'uniformité
+                  du tint,
+                  <strong className="text-dark-green bg-citrus-green px-0-5">
+                    les savons Alvigène doux et hydratants à la bave pure
+                    d'escargot
+                  </strong>
                   évoquent des sentiments positifs.
                 </span>
               </div>
               <div className="index-hero--cta">
-                <a className="btn btn-lg btn-green" href="#products" suppressHydrationWarning={true}>
+                <a
+                  className="btn btn-lg btn-green"
+                  href="#products"
+                  suppressHydrationWarning={true}
+                >
                   Voir nos produits <i className="ri-arrow-right-s-line"></i>
                 </a>
               </div>
@@ -72,15 +74,14 @@ export default function Home() {
         <div className="index-hero-banner">
           <div className="container index-hero-banner--content">
             <div className="index-hero-banner--infos">
-              {
-                services.map(s => <Service 
-                                    key={s.path_icon} 
-                                    path_icon={s.path_icon} 
-                                    title={s.title} 
-                                    description={s.description} 
-                                  />
-                              )
-              }
+              {services.map((s) => (
+                <Service
+                  key={s.path_icon}
+                  path_icon={s.path_icon}
+                  title={s.title}
+                  description={s.description}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -100,28 +101,26 @@ export default function Home() {
               </div>
             </div>
             <div className="products-list pt-2 pb-4">
-            {
-              products_soaps.map(p => <Product 
-                                  key={p.title} 
-                                  url={p.url} 
-                                  title={p.title} 
-                                  description={p.description} 
-                                  price={p.price} 
-                                />
-                          )         
-            }
+              {products_soaps.map((p) => (
+                <Product
+                  key={p.title}
+                  url={p.url}
+                  title={p.title}
+                  description={p.description}
+                  price={p.price}
+                />
+              ))}
             </div>
             <div className="products-list pt-2 pb-4">
-            {
-              products_gels.map(p => <Product 
-                                  key={p.title} 
-                                  url={p.url} 
-                                  title={p.title} 
-                                  description={p.description} 
-                                  price={p.price} 
-                                />
-                          )
-            }
+              {products_gels.map((p) => (
+                <Product
+                  key={p.title}
+                  url={p.url}
+                  title={p.title}
+                  description={p.description}
+                  price={p.price}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -134,9 +133,9 @@ export default function Home() {
               <div className="detail">
                 <div className="dot bg-green"></div>
                 <div className="content">
-                  Un mélange unique d'ingrédients organiques harmonise et protège
-                  votre peau contre les maladies, vergetures, rides, cicatrices et
-                  tâches.
+                  Un mélange unique d'ingrédients organiques harmonise et
+                  protège votre peau contre les maladies, vergetures, rides,
+                  cicatrices et tâches.
                 </div>
               </div>
               <div className="detail">
@@ -149,9 +148,9 @@ export default function Home() {
               <div className="detail">
                 <div className="dot bg-red"></div>
                 <div className="content">
-                  Nous sommes fondamentalement contre l'éclaircissage de la peau.
-                  Nos produits sont faits pour protéger votre peau et votre teint
-                  naturel.
+                  Nous sommes fondamentalement contre l'éclaircissage de la
+                  peau. Nos produits sont faits pour protéger votre peau et
+                  votre teint naturel.
                 </div>
               </div>
               <div className="detail">
@@ -166,7 +165,7 @@ export default function Home() {
         {/* End composition section  */}
 
         {/* Begin carrousel section*/}
-        <div id="testimonies" className="index-our-customers pb-4" >
+        <div id="testimonies" className="index-our-customers pb-4">
           <div className="container text-center">
             <h3 className="pt-3 pb-2">Alvigène selon nos clients ✌️</h3>
             <div className="index-our-customers--content">
@@ -180,20 +179,17 @@ export default function Home() {
                   <i className="ri-arrow-left-line"></i>
                 </button>
               </div>
-              
-                {
-                  testimonies.map(
-                                    t => <Carousel 
-                                          key={t.url}
-                                          url = {t.url}
-                                          comment = {t.comment}
-                                          name = {t.name}
-                                          city = {t.city}
-                    
-                                        />
-                                  )
-                }
-             
+
+              {testimonies.map((t) => (
+                <Carousel
+                  key={t.url}
+                  url={t.url}
+                  comment={t.comment}
+                  name={t.name}
+                  city={t.city}
+                />
+              ))}
+
               <div className="navigation">
                 <button
                   type="button"
@@ -208,9 +204,7 @@ export default function Home() {
           </div>
         </div>
         {/* End carrousel section*/}
-  
-      </main> 
-    
+      </main>
     </>
   );
 }

@@ -1,19 +1,21 @@
-'use client'
-import Image from 'next/image'
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
-
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 const links = [
-    {name: 'Products', href: '#product'},
-    {name: 'Testimonies', href: '#testimonies'}
+  { name: "Products", href: "#product" },
+  { name: "Testimonies", href: "#testimonies" },
 ];
 
-
-export default function Navbar(){
-  return(
-    <header id="js-header" className="header" data-controller="marketing--mobile">
+export default function Navbar() {
+  return (
+    <header
+      id="js-header"
+      className="header"
+      data-controller="marketing--mobile"
+    >
       <div className="container">
         <nav className="navbar" id="js-header-navbar">
           <div
@@ -25,7 +27,11 @@ export default function Navbar(){
             <span></span>
             <span></span>
           </div>
-          <Link className="navbar-logo" href="./" suppressHydrationWarning={true}>
+          <Link
+            className="navbar-logo"
+            href="./"
+            suppressHydrationWarning={true}
+          >
             <Image
               width={300}
               height={300}
@@ -40,10 +46,13 @@ export default function Navbar(){
         </nav>
       </div>
       <nav className="mobile-menu" data-marketing--mobile-target="menu">
-        <Link href="./#products" suppressHydrationWarning={true}>Produits</Link>
-        <Link href="./#testimonies" suppressHydrationWarning={true}>Testimonies</Link>
+        <Link href="./#products" suppressHydrationWarning={true}>
+          Produits
+        </Link>
+        <Link href="./#testimonies" suppressHydrationWarning={true}>
+          Testimonies
+        </Link>
       </nav>
     </header>
-
   );
 }
