@@ -1,28 +1,3 @@
-<<<<<<< Updated upstream
-"use client";
-import Navbar from "./components/navbar";
-import Image from "next/image";
-import { products_soaps, products_gels } from "./utils/products";
-import Product from "./components/product";
-import Service from "./components/service";
-import { services } from "./utils/services";
-import Carousel from "./components/carousel";
-import { testimonies } from "./utils/testimonies";
-
-const navigation = [
-  { name: "Product", href: "#product" },
-  { name: "Testimonies", href: "#testimonie" },
-];
-
-const imagestyle = {
-  width: "100%",
-  height: "auto",
-};
-export default function Home() {
-  // const pathname = usePathname()
-
-  return (
-=======
 'use client'
 import Navbar from './components/navbar'
 import Image from 'next/image'
@@ -36,7 +11,6 @@ import Link from 'next/link';
 
 export default function Home() {
   return ( 
->>>>>>> Stashed changes
     <>
       <main className="main">
         {/* Begin Navbar component */}
@@ -65,15 +39,9 @@ export default function Home() {
                 </span>
               </div>
               <div className="index-hero--cta">
-<<<<<<< Updated upstream
-                <a
-                  className="btn btn-lg btn-green"
-                  href="#products"
-=======
                 <Link 
                   className="btn btn-lg btn-green" 
                   href="#products" 
->>>>>>> Stashed changes
                   suppressHydrationWarning={true}
                 >
                   Voir nos produits <i className="ri-arrow-right-s-line"></i>
