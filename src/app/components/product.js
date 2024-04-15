@@ -5,8 +5,8 @@ export default function Product({ url, title, description, price }) {
     <div className="card card-product">
       <div className="card-img">
         <Image
-          width={200}
-          height={200}
+          width={400}
+          height={400}
           alt="logo"
           className="img-fluid"
           src={url}

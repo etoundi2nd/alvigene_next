@@ -33,9 +33,6 @@ export default function Carousel({ url, name, comment, city }) {
       buttons.forEach((btn) => {
         btn.addEventListener("click", (event) => {
           hideAny(currentValue);
-          // if (!(event.target instanceof HTMLButtonElement)) {
-          //   return;
-          // }
           currentValue += parseInt(event.currentTarget.dataset.changeBy);
           showAny(currentValue);
         });
@@ -70,8 +67,8 @@ export default function Carousel({ url, name, comment, city }) {
       <div className="customer-details py-2">
         <div className="mb-1">
           <Image
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             className="avatar"
             src={url}
             alt="rose-image"

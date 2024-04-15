@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +15,18 @@ export default function Navbar() {
     <header
       id="js-header"
       className="header"
+=======
+'use client'
+import Image from 'next/image'
+import Link from 'next/link';
+import React from 'react';
+
+export default function Navbar(){
+  return(
+    <header 
+      id="js-header" 
+      className="header" 
+>>>>>>> Stashed changes
       data-controller="marketing--mobile"
     >
       <div className="container">

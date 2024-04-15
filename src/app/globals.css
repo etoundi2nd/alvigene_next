@@ -678,8 +678,8 @@ button {
   width: 100%;
 }
 .img-fluid {
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;
 }
 @media (max-width: 768px) {
   .d-md-none {
@@ -912,8 +912,8 @@ button {
   transform: scale(0);
 }
 .header .navbar .navbar-logo img {
-  height: 30px;
-  width: auto;
+  height: 30px !important;
+  width: auto !important;
 }
 .header .navbar a {
   display: flex;
