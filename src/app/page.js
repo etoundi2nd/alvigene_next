@@ -1,4 +1,5 @@
-'use client'
+// 'use client'
+"use server"
 import Navbar from './components/navbar'
 import Image from 'next/image'
 import {products_soaps, products_gels} from './utils/products'
@@ -9,8 +10,8 @@ import Carousel from './components/carousel'
 import {testimonies} from './utils/testimonies'
 import Link from 'next/link';
 
-export default function Home() {
-  return ( 
+export default async function Home() {
+  return (
     <>
       <main className="main">
         {/* Begin Navbar component */}
@@ -39,9 +40,9 @@ export default function Home() {
                 </span>
               </div>
               <div className="index-hero--cta">
-                <Link 
-                  className="btn btn-lg btn-green" 
-                  href="#products" 
+                <Link
+                  className="btn btn-lg btn-green"
+                  href="#products"
                   suppressHydrationWarning={true}
                 >
                   Voir nos produits <i className="ri-arrow-right-s-line"></i>
