@@ -9,6 +9,7 @@ import { services } from './utils/services'
 import Carousel from './components/carousel'
 import {testimonies} from './utils/testimonies'
 import Link from 'next/link';
+import ProductList from './components/product_list'
 
 export default async function Home() {
   return (
@@ -91,7 +92,8 @@ export default async function Home() {
               </div>
             </div>
             <div className="products-list pt-2 pb-4">
-              {products_soaps.map((p) => (
+              <ProductList />
+              {/* {products_soaps.map((p) => (
                 <Product
                   key={p.title}
                   url={p.url}
@@ -99,7 +101,7 @@ export default async function Home() {
                   description={p.description}
                   price={p.price}
                 />
-              ))}
+              ))} */}
             </div>
             <div className="products-list pt-2 pb-4">
               {products_gels.map((p) => (
