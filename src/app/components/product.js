@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 export default async function Product(product) {
-  // console.log(products.id)
   return (
     <div className="card card-product">
       <div className="card-img">

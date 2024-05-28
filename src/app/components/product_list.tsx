@@ -9,19 +9,10 @@ export default async function ProductList() {
   return (
     <>
       {dataProduct.map(
-        (product: {
-          id: Key;
-          slug: any;
-          title: any;
-          description: any;
-          price: any;
-        }) => (
+        (product) => (
           <Product
             key={product.id}
-            url={product.slug}
-            title={product.title}
-            description={product.description}
-            price={product.price}
+            product ={product}
           />
         )
       )}
