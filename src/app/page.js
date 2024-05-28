@@ -1,15 +1,14 @@
-// 'use client'
-"use server"
-import Navbar from './components/navbar'
-import Image from 'next/image'
-import {products_soaps, products_gels} from './utils/products'
-import Product from './components/product'
-import Service from './components/service'
-import { services } from './utils/services'
-import Carousel from './components/carousel'
-import {testimonies} from './utils/testimonies'
-import Link from 'next/link';
-import ProductList from './components/product_list'
+"use server";
+import Navbar from "./components/navbar";
+import Image from "next/image";
+import { products_soaps, products_gels } from "./utils/products";
+import Product from "./components/products/product";
+import Service from "./components/service";
+import { services } from "./utils/services";
+import Carousel from "./components/carousel";
+import { testimonies } from "./utils/testimonies";
+import Link from "next/link";
+import ProductList from "./components/products/productList";
 
 export default async function Home() {
   return (
@@ -91,31 +90,9 @@ export default async function Home() {
                 Explorez nos savons solide et liquide à la bave pure d'escargot.
               </div>
             </div>
+            <div className="products-list pt-2 pb-4">{<ProductList />}</div>
             <div className="products-list pt-2 pb-4">
-              {/* {ProductList.map((product) => (
-                // console.log(product.id)
-                <Product />
-              ))} */}
-              {/* {products_soaps.map((p) => (
-                <Product
-                  key={p.title}
-                  url={p.url}
-                  title={p.title}
-                  description={p.description}
-                  price={p.price}
-                />
-              ))} */}
-            </div>
-            <div className="products-list pt-2 pb-4">
-              {products_gels.map((p) => (
-                <Product
-                  key={p.title}
-                  url={p.url}
-                  title={p.title}
-                  description={p.description}
-                  price={p.price}
-                />
-              ))}
+              {/* Begin Products list type gel */}
             </div>
           </div>
         </div>

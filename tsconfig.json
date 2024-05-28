@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -27,9 +23,16 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "carousel.js"
+    "carousel.js",
+    "src/app/components/products/productList.js",
+    "src/app/components/navbar.js",
+    "src/app/components/getProduct.js",
+    "src/app/components/footer.js",
+    "src/app/components/carousel.js",
+    "src/app/queries/products/getProduct.js",
+    "src/app/queries/products/getProductList.js",
+    "src/app/utils/services.js",
+    "src/app/components/service.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

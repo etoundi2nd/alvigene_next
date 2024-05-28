@@ -1,9 +1,5 @@
-async function getProduct(productId = null) {
-  const url = productId
-    ? `http://127.0.0.1:3001/api/v1/products/${productId}`
-    : `http://127.0.0.1:3001/api/v1/products`;
-
-  const res = await fetch(url);
+async function getProductList() {
+  const res = await fetch(`http://127.0.0.1:3001/api/v1/products`);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -15,4 +11,4 @@ async function getProduct(productId = null) {
   return res.json();
 }
 
-export default getProduct;
+export default getProductList;
