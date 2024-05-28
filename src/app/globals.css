@@ -678,8 +678,8 @@ button {
   width: 100%;
 }
 .img-fluid {
-  width: 100% !important;
-  height: auto !important;
+  width: 100%;
+  height: auto;
 }
 @media (max-width: 768px) {
   .d-md-none {

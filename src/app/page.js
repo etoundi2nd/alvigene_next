@@ -92,7 +92,10 @@ export default async function Home() {
               </div>
             </div>
             <div className="products-list pt-2 pb-4">
-              <ProductList />
+              {/* {ProductList.map((product) => (
+                // console.log(product.id)
+                <Product />
+              ))} */}
               {/* {products_soaps.map((p) => (
                 <Product
                   key={p.title}

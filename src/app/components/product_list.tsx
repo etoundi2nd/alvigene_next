@@ -8,32 +8,22 @@ export default async function ProductList() {
 
   return (
     <>
-      {dataProduct.length > 1 ? (
-        dataProduct.map(
-          (product: {
-            id: Key;
-            slug: any;
-            title: any;
-            description: any;
-            price: any;
-          }) => (
-            <Product
-              key={product.id}
-              url={product.slug}
-              title={product.title}
-              description={product.description}
-              price={product.price}
-            />
-          )
+      {dataProduct.map(
+        (product: {
+          id: Key;
+          slug: any;
+          title: any;
+          description: any;
+          price: any;
+        }) => (
+          <Product
+            key={product.id}
+            url={product.slug}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+          />
         )
-      ) : (
-        <Product
-          key={dataProduct.id}
-          url={dataProduct.slug}
-          title={dataProduct.title}
-          description={dataProduct.description}
-          price={dataProduct.price}
-        />
       )}
     </>
   );
