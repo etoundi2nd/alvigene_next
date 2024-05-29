@@ -5,9 +5,9 @@ import React from 'react';
 
 export default function Navbar(){
   return(
-    <header 
-      id="js-header" 
-      className="header" 
+    <header
+      id="js-header"
+      className="header"
       data-controller="marketing--mobile"
     >
       <div className="container">
@@ -34,13 +34,13 @@ export default function Navbar(){
             />
           </Link>
           <div className="navbar-items navigation-links">
-            <Link href="./#products">Produits</Link>
+            <Link href="./products">Produits</Link>
             <Link href="./#testimonies">Testimonies</Link>
           </div>
         </nav>
       </div>
       <nav className="mobile-menu" data-marketing--mobile-target="menu">
-        <Link href="./#products" suppressHydrationWarning={true}>
+        <Link href="./products" suppressHydrationWarning={true}>
           Produits
         </Link>
         <Link href="./#testimonies" suppressHydrationWarning={true}>

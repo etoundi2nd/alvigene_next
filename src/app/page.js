@@ -152,7 +152,7 @@ export default async function Home() {
                 </button>
               </div>
 
-              {testimonies.map((t) => (
+              {/* {testimonies.map((t) => (
                 <Carousel
                   key={t.url}
                   url={t.url}
@@ -160,7 +160,7 @@ export default async function Home() {
                   name={t.name}
                   city={t.city}
                 />
-              ))}
+              ))} */}
 
               <div className="navigation">
                 <button
