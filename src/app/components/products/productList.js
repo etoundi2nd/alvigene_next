@@ -8,7 +8,7 @@ export default async function ProductList() {
 	return (
 		<>
 			{productList.map((product) => (
-				<Product key={product.id} product={product} />
+				<Product key={product.slug} product={product} />
 			))}
 		</>
 	);
