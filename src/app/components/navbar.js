@@ -23,7 +23,7 @@ export default function Navbar() {
 						/>
 					</Link>
 					<div className="navbar-items navigation-links">
-						<Link href="./#products">Produits</Link>
+						<Link href="./products">Produits</Link>
 						<Link href="./#testimonies">Testimonies</Link>
 					</div>
 				</nav>

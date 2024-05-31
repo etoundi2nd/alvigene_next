@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "carousel.js"
-  ],
+, "src/app/components/service.js", "src/app/components/navbar.js", "src/app/components/footer.js", "src/app/components/carousel.js"  ],
   "exclude": [
     "node_modules"
   ]

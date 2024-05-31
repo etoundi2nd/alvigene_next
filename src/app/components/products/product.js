@@ -12,7 +12,7 @@ export default async function Product({ product }) {
 			<div className="card-body">
 				<div>
 					<span className="name" style={{ textdecoration: 'none !important' }}>
-						<Link href={`/products/${slug}`}>
+						<Link href={`./products/${slug}`}>
 							<strong>{title}</strong>
 						</Link>
 					</span>

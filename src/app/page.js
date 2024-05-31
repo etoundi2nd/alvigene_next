@@ -36,7 +36,7 @@ export default async function Home() {
 								</span>
 							</div>
 							<div className="index-hero--cta">
-								<Link className="btn btn-lg btn-green" href="#products" suppressHydrationWarning={true}>
+								<Link className="btn btn-lg btn-green" href="/products" suppressHydrationWarning={true}>
 									Voir nos produits <i className="ri-arrow-right-s-line"></i>
 								</Link>
 							</div>
