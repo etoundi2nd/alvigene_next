@@ -7,7 +7,7 @@ export default async function Product({ product }) {
 	return (
 		<div className="card card-product">
 			<div className="card-img">
-				<Image width={400} height={400} alt="logo" className="img-fluid" src={image_url} />
+				{/* <Image width={400} height={400} alt="logo" className="img-fluid" src={image_url} /> */}
 			</div>
 			<div className="card-body">
 				<div>
