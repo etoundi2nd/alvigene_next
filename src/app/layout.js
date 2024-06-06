@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
 			<body className={fonts_variables} data-controller="marketing--offset-canvas">
 				{children}
 				<Footer />
-				<Script src="carousel.js" />
 			</body>
 		</html>
 	);
