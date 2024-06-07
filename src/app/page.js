@@ -1,5 +1,3 @@
-// 'use client'
-'use server';
 import Navbar from './components/navbar';
 import Image from 'next/image';
 import Service from './components/service';
@@ -126,7 +124,7 @@ export default async function Home() {
 							</div>
 
 							{testimonies.map((t) => (
-								<Carousel key={t.url} url={t.url} comment={t.comment} name={t.name} city={t.city} />
+								<Carousel key={t.name} url={t.url} comment={t.comment} name={t.name} city={t.city} />
 							))}
 
 							<div className="navigation">
