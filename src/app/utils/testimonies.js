@@ -27,7 +27,7 @@ export const testimonies = [
   },
   {
     url: "/testimonies/rose-7710c7692c3f86f56b2e6d2608930bf47b47a350e7ebedb8b8ed38fa14af7943.png",
-    name: "",
+    name: "Rosine",
     comment: "Ce savons à changé ma relation avec ma peau et mon teint 😍",
     city: "à Douala",
   },
