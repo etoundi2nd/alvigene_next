@@ -4,8 +4,8 @@ import './globals.css';
 import 'remixicon/fonts/remixicon.css';
 import { noto_serif_display, inter } from './fonts';
 import Footer from './components/footer';
-import Script from 'next/script';
 import React from 'react';
+import Navbar from './components/navbar';
 
 const fonts_variables = `${noto_serif_display.className} ${inter.className}`;
 
@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={fonts_variables} data-controller="marketing--offset-canvas">
+				<Navbar />
 				{children}
 				<Footer />
-				<Script src="carousel.js" />
 			</body>
 		</html>
 	);

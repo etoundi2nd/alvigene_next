@@ -7,7 +7,7 @@ export default function Footer() {
 		<>
 			<footer className="footer">
 				<div className="footer-nav py-3">
-					<Link className="footer-logo" href="./">
+					<Link className="footer-logo" href="/">
 						<Image
 							width={200}
 							height={200}

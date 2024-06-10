@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -14,25 +13,26 @@ export default function Navbar() {
 						<span></span>
 						<span></span>
 					</div>
-					<Link className="navbar-logo" href="./" suppressHydrationWarning={true}>
+					<Link className="navbar-logo" href="/" suppressHydrationWarning={true}>
 						<Image
 							width={300}
 							height={300}
 							alt="logo"
 							src="/brand/alvigene-logo-c65d07955c1d97ae1efe6e10b90d98e332760c7ed3747a18771b8fda9cd5685c.svg"
+							priority={true}
 						/>
 					</Link>
 					<div className="navbar-items navigation-links">
-						<Link href="./#products">Produits</Link>
-						<Link href="./#testimonies">Testimonies</Link>
+						<Link href="/products">Produits</Link>
+						<Link href="/#testimonies">Testimonies</Link>
 					</div>
 				</nav>
 			</div>
 			<nav className="mobile-menu" data-marketing--mobile-target="menu">
-				<Link href="./#products" suppressHydrationWarning={true}>
+				<Link href="/products" suppressHydrationWarning={true}>
 					Produits
 				</Link>
-				<Link href="./#testimonies" suppressHydrationWarning={true}>
+				<Link href="/#testimonies" suppressHydrationWarning={true}>
 					Testimonies
 				</Link>
 			</nav>

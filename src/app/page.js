@@ -1,5 +1,3 @@
-// 'use client'
-'use server';
 import Navbar from './components/navbar';
 import Image from 'next/image';
 import Service from './components/service';
@@ -13,10 +11,6 @@ export default async function Home() {
 	return (
 		<>
 			<main className="main">
-				{/* Begin Navbar component */}
-				<Navbar />
-				{/* End Navbar component */}
-
 				{/* Begin Jumbottron component  */}
 				<div className="index-hero">
 					<div className="container index-hero--content">
@@ -36,7 +30,7 @@ export default async function Home() {
 								</span>
 							</div>
 							<div className="index-hero--cta">
-								<Link className="btn btn-lg btn-green" href="#products" suppressHydrationWarning={true}>
+								<Link className="btn btn-lg btn-green" href="/products" suppressHydrationWarning={true}>
 									Voir nos produits <i className="ri-arrow-right-s-line"></i>
 								</Link>
 							</div>
@@ -126,7 +120,7 @@ export default async function Home() {
 							</div>
 
 							{testimonies.map((t) => (
-								<Carousel key={t.url} url={t.url} comment={t.comment} name={t.name} city={t.city} />
+								<Carousel key={t.name} url={t.url} comment={t.comment} name={t.name} city={t.city} />
 							))}
 
 							<div className="navigation">
