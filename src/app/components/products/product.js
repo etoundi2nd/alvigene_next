@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default async function Product({ product }) {
 	const { title, description, price, image_url, slug, id } = product;
-	const product_image = image_url ? image_url : "./products/No-Image-Placeholder.svg";
+	const product_image = image_url ? image_url : "/products/No-Image-Placeholder.svg";
 
 	return (
     <div className="card card-product">
@@ -23,7 +23,7 @@ export default async function Product({ product }) {
       <div className="card-body">
         <div>
           <span className="name" style={{ textdecoration: "none !important" }}>
-            <Link href={`./products/${slug}`}>
+            <Link href={`/products/${slug}`}>
               <strong>{title}</strong>
             </Link>
           </span>
