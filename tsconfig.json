@@ -27,7 +27,8 @@
     "src/app/components/service.js",
     "src/app/components/navbar.js",
     "src/app/components/footer.js",
-    "src/app/components/carousel.js"
-, "src/app/utils/services.js"  ],
+    "src/app/components/carousel.js",
+    "src/app/utils/services.js"
+  ],
   "exclude": ["node_modules"]
 }

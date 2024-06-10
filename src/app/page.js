@@ -11,10 +11,6 @@ export default async function Home() {
 	return (
 		<>
 			<main className="main">
-				{/* Begin Navbar component */}
-				<Navbar />
-				{/* End Navbar component */}
-
 				{/* Begin Jumbottron component  */}
 				<div className="index-hero">
 					<div className="container index-hero--content">
