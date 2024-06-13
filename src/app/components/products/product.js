@@ -70,7 +70,7 @@ export default async function Product({ product }) {
 						<span className="product-price">{price}FCFA</span>
 						<small>TTC</small>
 					</div>
-					<form action="/orderItems" method="post" onSubmit={onSubmit}>
+					<form onSubmit={onSubmit}>
 						<input type="hidden" name="product_id" value={`${id}`} />
 						<button type="submit" className="btn btn-sm btn-green border-green">
 							Acheter
