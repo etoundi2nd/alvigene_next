@@ -4,6 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import OffCanvas from '../orders/offCanvas';
 
+function getCurrentUserId() {
+	localStorage.getItem('currentUserId') || localStorage.setItem('currentUserId', crypto.randomUUID());
+	return localStorage.getItem('currentUserId');
+}
+
 export default async function Product({ product }) {
 	const { title, description, price, image_url, slug, id } = product;
 	const product_image = image_url ? image_url : '/products/No-Image-Placeholder.svg';
@@ -12,7 +17,8 @@ export default async function Product({ product }) {
 		event.preventDefault();
 
 		const formData = new FormData(event.currentTarget);
-		const requestBody = { current_user_id: crypto.randomUUID(), ...Object.fromEntries(formData.entries()) };
+		// We need to get the current user id from the session
+		const requestBody = { current_user_id: getCurrentUserId(), ...Object.fromEntries(formData.entries()) };
 		console.log(requestBody);
 
 		const response = await fetch('http://localhost:3001/api/v1/order_items', {
