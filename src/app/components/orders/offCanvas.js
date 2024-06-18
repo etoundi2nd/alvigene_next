@@ -1,43 +1,58 @@
-export default function OffCanvas(data) {
-	// parse data to display the order items
+import OrderItems from "../../orderItems/page";
 
-	return (
-		<div class="offcanvas-backdrop d-block" data-marketing--offset-canvas-target="canvas">
-			<div class="offcanvas show" data-marketing--offset-canvas-target="offsetcanvas">
-				<div class="offcanvas-content">
-					<div class="offcanvas-header">
-						<span class="btn btn-sm btn-black me-1" data-action="click->marketing--offset-canvas#toggleCanvas">
-							<i class="close-fill js-close-search"></i>
-						</span>
+export default function OffCanvas({infoOrderItem}) {
 
-						<h5 class="title">Mon panier d'achat</h5>
-					</div>
+  return (
+    <div
+      className="offcanvas-backdrop d-block"
+      data-marketing--offset-canvas-target="canvas"
+    >
+      <div
+        className="offcanvas show"
+        data-marketing--offset-canvas-target="offsetcanvas"
+      >
+        <div className="offcanvas-content">
+          <div className="offcanvas-header">
+            <span
+              className="btn btn-sm btn-black me-1"
+              data-action="click->marketing--offset-canvas#toggleCanvas"
+            >
+              <i className="close-fill js-close-search"></i>
+            </span>
 
-					<div class="offcanvas-body">
-						<div class="order-items-list pb-4">{/* <%= render partial: 'marketing/order_items/order_item', collection: order_items %> */}</div>
-					</div>
+            <h5 className="title">Mon panier d'achat</h5>
+          </div>
 
-					<div class="offcanvas-footer">
-						<div class="d-flex flex-row flex-wrap justify-content-between mb-1-5">
-							<span class="pe-1">Total de la commande:</span>
-							{/* <strong><%= render 'marketing/orders/total_with_vat', order: order %></strong> */}
-						</div>
+          <div className="offcanvas-body">
+            <div className="order-items-list pb-4">
+              {/* <OrderItems price={infoOrderItem.price}/> */}
+            </div>
+          </div>
 
-						<div class="d-flex flex-row flex-wrap justify-content-between g-1">
-							{/* <%= link_to 'Continuer mes achats',
+          <div className="offcanvas-footer">
+            <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
+              <span className="pe-1">Total de la commande:</span>
+              {/* <strong><%= render 'marketing/orders/total_with_vat', order: order %></strong> */}
+            </div>
+
+            <div className="d-flex flex-row flex-wrap justify-content-between g-1">
+              {/* <%= link_to 'Continuer mes achats',
                                 '#',
-                                class: 'btn btn-white me-1',
+                                className: 'btn btn-white me-1',
                                 data: {
                                     action: 'click->marketing--offset-canvas#toggleCanvas'
                                 } %>
 
-                    <%= link_to 'Voir mon pannier', new_order_path, class: 'btn btn-midnight-blue', data: { turbo_frame: '_top' } %> */}
-						</div>
-					</div>
-				</div>
-			</div>
+                    <%= link_to 'Voir mon pannier', new_order_path, className: 'btn btn-midnight-blue', data: { turbo_frame: '_top' } %> */}
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<div class="canvas-offspace" data-action="click->marketing--offset-canvas#toggleCanvas"></div>
-		</div>
-	);
+      <div
+        className="canvas-offspace"
+        data-action="click->marketing--offset-canvas#toggleCanvas"
+      ></div>
+    </div>
+  );
 }
