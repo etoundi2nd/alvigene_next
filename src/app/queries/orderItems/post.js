@@ -30,6 +30,6 @@ export default async function POST(formData) {
   //   return localStorage.getItem("data", data);
   // Encode the data to be passed in the query parameter
   const encodedData = encodeURIComponent(JSON.stringify(data));
-
+// console.log(encodedData)
   redirect(`/orderItems?data=${encodedData}`);
 }

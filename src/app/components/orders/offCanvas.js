@@ -1,7 +1,9 @@
-import OrderItems from "../../orderItems/page";
+import OrderItemComponent from "../orderItems/orderItem";
 
-export default function OffCanvas({infoOrderItem}) {
-
+export default function OffCanvas(infoOrderItem) {
+  console.log(infoOrderItem);
+  // const {order} = infoOrderItem
+  // console.log(order);
   return (
     <div
       className="offcanvas-backdrop d-block"
@@ -25,7 +27,7 @@ export default function OffCanvas({infoOrderItem}) {
 
           <div className="offcanvas-body">
             <div className="order-items-list pb-4">
-              {/* <OrderItems price={infoOrderItem.price}/> */}
+              {/* <OrderItemComponent price={order_items.price}/> */}
             </div>
           </div>
 
