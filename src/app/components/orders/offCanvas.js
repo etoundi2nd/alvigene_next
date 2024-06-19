@@ -1,4 +1,7 @@
-import OrderItemComponent from "../orderItems/orderItem";
+import OrderItems from './orderItemList';
+
+export default function OffCanvas(data) {
+	// parse data to display the order items
 
 export default function OffCanvas(infoOrderItem) {
   console.log(infoOrderItem);
@@ -25,31 +28,21 @@ export default function OffCanvas(infoOrderItem) {
             <h5 className="title">Mon panier d'achat</h5>
           </div>
 
-          <div className="offcanvas-body">
-            <div className="order-items-list pb-4">
-              {/* <OrderItemComponent price={order_items.price}/> */}
-            </div>
-          </div>
+					<div class="offcanvas-body">
+						<div class="order-items-list pb-4">
+							<OrderItems data={data.order_items} />
+						</div>
+					</div>
 
-          <div className="offcanvas-footer">
-            <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
-              <span className="pe-1">Total de la commande:</span>
-              {/* <strong><%= render 'marketing/orders/total_with_vat', order: order %></strong> */}
-            </div>
+					<div class="offcanvas-footer">
+						<div class="d-flex flex-row flex-wrap justify-content-between mb-1-5">
+							<span class="pe-1">Total de la commande:</span>
+						</div>
 
-            <div className="d-flex flex-row flex-wrap justify-content-between g-1">
-              {/* <%= link_to 'Continuer mes achats',
-                                '#',
-                                className: 'btn btn-white me-1',
-                                data: {
-                                    action: 'click->marketing--offset-canvas#toggleCanvas'
-                                } %>
-
-                    <%= link_to 'Voir mon pannier', new_order_path, className: 'btn btn-midnight-blue', data: { turbo_frame: '_top' } %> */}
-            </div>
-          </div>
-        </div>
-      </div>
+						<div class="d-flex flex-row flex-wrap justify-content-between g-1"></div>
+					</div>
+				</div>
+			</div>
 
       <div
         className="canvas-offspace"

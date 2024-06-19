@@ -8,6 +8,34 @@ export default async function Product({ product }) {
 	const { title, description, price, image_url, slug, id } = product;
 	const product_image = image_url ? image_url : '/products/No-Image-Placeholder.svg';
 
+	async function onSubmit(event) {
+		event.preventDefault();
+
+		const formData = new FormData(event.currentTarget);
+		// We need to get the current user id from the session
+		const requestBody = { current_user_id: getCurrentUserId(), ...Object.fromEntries(formData.entries()) };
+		console.log(requestBody);
+
+		const response = await fetch('http://localhost:3001/api/v1/order_items', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+			body: JSON.stringify(requestBody),
+		});
+
+		const data = await response.json();
+		if (response.ok) {
+			console.log('Order item created');
+			const offCanvas = new OffCanvas(data);
+			// TODO: Add the offCanvas to the DOM
+		} else {
+			console.log('Order item not created');
+		}
+
+		console.log(data);
+	}
+
 	return (
     <div className="card card-product">
       <div className="card-img">
