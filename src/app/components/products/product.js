@@ -32,8 +32,8 @@ export default async function Product({ product }) {
 		const data = await response.json();
 		if (response.ok) {
 			console.log('Order item created');
-
-			// Open the offcanvas
+			const offCanvas = new OffCanvas(data);
+			// TODO: Add the offCanvas to the DOM
 		} else {
 			console.log('Order item not created');
 		}

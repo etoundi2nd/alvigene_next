@@ -1,3 +1,5 @@
+import OrderItems from './orderItemList';
+
 export default function OffCanvas(data) {
 	// parse data to display the order items
 
@@ -14,25 +16,17 @@ export default function OffCanvas(data) {
 					</div>
 
 					<div class="offcanvas-body">
-						<div class="order-items-list pb-4">{/* <%= render partial: 'marketing/order_items/order_item', collection: order_items %> */}</div>
+						<div class="order-items-list pb-4">
+							<OrderItems data={data.order_items} />
+						</div>
 					</div>
 
 					<div class="offcanvas-footer">
 						<div class="d-flex flex-row flex-wrap justify-content-between mb-1-5">
 							<span class="pe-1">Total de la commande:</span>
-							{/* <strong><%= render 'marketing/orders/total_with_vat', order: order %></strong> */}
 						</div>
 
-						<div class="d-flex flex-row flex-wrap justify-content-between g-1">
-							{/* <%= link_to 'Continuer mes achats',
-                                '#',
-                                class: 'btn btn-white me-1',
-                                data: {
-                                    action: 'click->marketing--offset-canvas#toggleCanvas'
-                                } %>
-
-                    <%= link_to 'Voir mon pannier', new_order_path, class: 'btn btn-midnight-blue', data: { turbo_frame: '_top' } %> */}
-						</div>
+						<div class="d-flex flex-row flex-wrap justify-content-between g-1"></div>
 					</div>
 				</div>
 			</div>
