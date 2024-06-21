@@ -34,52 +34,57 @@ import Link from 'next/link';
 
 export default function OrderItem(data) {
 	return (
-		<div className="order-item">
-			<div className="order-item--product mb-0-5">
-				<Link href={`/products/${data.product.slug}`}>
-					<div className="card-img">
-						<Image
-							width={400}
-							height={400}
-							alt="logo"
-							className="img-fluid"
-							src={product_image}
-							style={{
-								width: '100%',
-								height: 'auto',
-							}}
-						/>
-					</div>
-				</Link>
+    <div className="order-item">
+      <div className="order-item--product mb-0-5">
+        {/* href={`/products/${data.product.slug}`} */}
+        {/* <Link>
+          <div className="card-img">
+            <Image
+              width={400}
+              height={400}
+              alt="logo"
+              className="img-fluid"
+              src={product_image}
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </div>
+        </Link> */}
+        <div>
+          <h6>
+            {/* <Link href={`/products/${data.product.slug}`}>
+              <strong>{data.product.title}</strong>
+            </Link> */}
+          </h6>
+          <div>
+            Prix unitaire: <strong>2 000FCFA</strong>
+          </div>
+          <div>
+            Prix TTC: <strong>4 770FCFA</strong>
+            <small className="text-gray-600">(TVA: 19,25%)</small>
+          </div>
+        </div>
+      </div>
 
-				<div>
-					<h6>
-						<Link href={`/products/${data.product.slug}`}>
-							<strong>{data.product.title}</strong>
-						</Link>
-					</h6>
-					<div>
-						Prix unitaire: <strong>2 000FCFA</strong>
-					</div>
-					<div>
-						Prix TTC: <strong>4 770FCFA</strong>
-						<small className="text-gray-600">(TVA: 19,25%)</small>
-					</div>
-				</div>
-			</div>
-
-			<div className="order-item--quantity d-flex flex-row">
-				<form>
-					<div className="order-item--quantity-selector">
-						<input type="submit" name="commit" value="-" />
-						<input id="order_item_quantity_79" type="text" value="2" name="order_item[quantity]" />
-						<input type="submit" name="commit" value="+" />
-					</div>
-				</form>
-				<button name="button" type="submit">
-					supprimer
-				</button>
-			</div>
-		</div>
-	);
+      <div className="order-item--quantity d-flex flex-row">
+        <form>
+          <div className="order-item--quantity-selector">
+            <input type="submit" name="commit" value="-" />
+            <input
+              id="order_item_quantity_79"
+              type="text"
+              value="2"
+              name="order_item[quantity]"
+            />
+            <input type="submit" name="commit" value="+" />
+          </div>
+        </form>
+        <button name="button" type="submit">
+          supprimer
+        </button>
+      </div>
+    </div>
+  );
 }
