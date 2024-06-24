@@ -33,6 +33,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function OrderItem(data) {
+
 	return (
     <div className="order-item">
       <div className="order-item--product mb-0-5">
@@ -59,7 +60,7 @@ export default function OrderItem(data) {
             </Link> */}
           </h6>
           <div>
-            Prix unitaire: <strong>2 000FCFA</strong>
+            Prix unitaire: <strong>{data.orderItem.price}FCFA</strong>
           </div>
           <div>
             Prix TTC: <strong>4 770FCFA</strong>

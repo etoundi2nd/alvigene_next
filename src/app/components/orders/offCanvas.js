@@ -1,10 +1,10 @@
 // import OrderItems from "./orderItemList";
-import OrderItem from './orderItem'
+import OrderItemList from './orderItemList'
 
 export default function OffCanvas({ data }) {
   // parse data to display the order items
 
-  console.log(data);
+  // console.log(data.order_items);
   // const {order} = infoOrderItem
   // console.log(order);
   return (
@@ -31,7 +31,7 @@ export default function OffCanvas({ data }) {
 
             <div className="offcanvas-body">
               <div className="order-items-list pb-4">
-                <OrderItem data={data.order_items} />
+                <OrderItemList data={data.order_items} />
               </div>
             </div>
 
