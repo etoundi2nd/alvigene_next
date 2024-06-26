@@ -31,33 +31,70 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function OrderItem(data) {
+
+  const product_image = data.orderItem.product.image_url
+    ? data.orderItem.product.image_url
+    : "/products/No-Image-Placeholder.svg";
+  const [count, setCount] = useState(data.orderItem.quantity);
+
+  const increment = (event) => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+
+async function UpdateOrderItem(event) {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+  const requestBody = {...Object.fromEntries(formData.entries())}
+console.log(Object.fromEntries(formData.entries()));
+console.log(requestBody.order_item_id);
+  // 'use server'
+  const res = await fetch(`http://localhost:3001/api/v1/order_items/${requestBody.order_item_id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "API-Key": process.env.DATA_API_KEY,
+    },
+    body: JSON.stringify(requestBody),
+  });
+  console.log(res);
+  const data = await res.json();
+  console.log(data)
+  return data
+}
 
 	return (
     <div className="order-item">
       <div className="order-item--product mb-0-5">
-        {/* href={`/products/${data.product.slug}`} */}
-        {/* <Link>
+        <Link href={`/products/${data.orderItem.product.slug}`}>
           <div className="card-img">
             <Image
-              width={400}
-              height={400}
+              width={200}
+              height={200}
               alt="logo"
               className="img-fluid"
               src={product_image}
               style={{
-                width: "100%",
-                height: "auto",
+                width: "70%",
+                height: "40%",
               }}
             />
           </div>
-        </Link> */}
+        </Link>
         <div>
           <h6>
-            {/* <Link href={`/products/${data.product.slug}`}>
-              <strong>{data.product.title}</strong>
-            </Link> */}
+            <Link href={`/products/${data.orderItem.product.slug}`}>
+              <strong>{data.orderItem.product.title}</strong>
+            </Link>
           </h6>
           <div>
             Prix unitaire: <strong>{data.orderItem.price}FCFA</strong>
@@ -70,16 +107,22 @@ export default function OrderItem(data) {
       </div>
 
       <div className="order-item--quantity d-flex flex-row">
-        <form>
+        <form onSubmit={UpdateOrderItem}>
+          <input
+            type="hidden"
+            name="order_item_id"
+            value={`${data.orderItem.id}`}
+          />
+          <input type="hidden" name="order_id" value={`${data.orderItem.order_id}`} />
           <div className="order-item--quantity-selector">
-            <input type="submit" name="commit" value="-" />
+            <input type="submit" name="commit" value="-" onClick={decrement} />
             <input
               id="order_item_quantity_79"
               type="text"
-              value="2"
+              value={count}
               name="order_item[quantity]"
             />
-            <input type="submit" name="commit" value="+" />
+            <input type="submit" name="commit" value="+" onClick={increment} />
           </div>
         </form>
         <button name="button" type="submit">

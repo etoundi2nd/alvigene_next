@@ -1466,7 +1466,7 @@ button {
 .order-item .order-item--quantity .order-item--quantity-selector input[type='text'] {
 	width: 60%;
 }
-.order-item .order-item--quantity .order-item--quantity-selector input[type='submit'] {
+.order-item .order-item--quantity .order-item--quantity-selector input[type='button'] {
 	width: 20%;
 }
 .order-items-list {
