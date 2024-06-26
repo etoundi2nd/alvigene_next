@@ -32,30 +32,43 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRef } from 'react'
 
 export default function OrderItem(data) {
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
     const [count, setCount] = useState(data.orderItem.quantity)
+    const formRef = useRef()
+    const quantityRef = useRef()
 
-    const increment = (event) => {
-        setCount(count + 1)
-    }
+    const changeCounter = (event) => {
+        let value = event.target.value
 
-    const decrement = () => {
-        if (count > 1) {
-            setCount(count - 1)
+        if (value === '+') {
+            value = count + 1
+        } else if (value === '-') {
+            value = count - 1
         }
+
+        value = Number(value)
+        setCount(value)
+
+        quantityRef.current.value = value
+
+        formRef.current.requestSubmit()
     }
 
     async function UpdateOrderItem(event) {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
-        const requestBody = { ...Object.fromEntries(formData.entries()) }
-        console.log(Object.fromEntries(formData.entries()))
-        console.log(requestBody.order_item_id)
+        const formEntries = { ...Object.fromEntries(formData.entries()) }
+        const requestBody = {
+            order_id: formEntries.order_id,
+            order_item: { quantity: formEntries.quantity }
+        }
+
         // 'use server'
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${requestBody.order_item_id}`, {
+        const res = await fetch(`http://localhost:3001/api/v1/order_items/${formEntries.order_item_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,9 +76,9 @@ export default function OrderItem(data) {
             },
             body: JSON.stringify(requestBody)
         })
-        console.log(res)
+
         const data = await res.json()
-        console.log(data)
+
         return data
     }
 
@@ -94,13 +107,20 @@ export default function OrderItem(data) {
             </div>
 
             <div className="order-item--quantity d-flex flex-row">
-                <form onSubmit={UpdateOrderItem}>
+                <form ref={formRef} onSubmit={UpdateOrderItem}>
                     <input type="hidden" name="order_item_id" value={`${data.orderItem.id}`} />
                     <input type="hidden" name="order_id" value={`${data.orderItem.order_id}`} />
                     <div className="order-item--quantity-selector">
-                        <input type="submit" name="commit" value="-" onClick={decrement} />
-                        <input id="order_item_quantity_79" type="text" value={count} name="order_item[quantity]" />
-                        <input type="submit" name="commit" value="+" onClick={increment} />
+                        <input type="button" value="-" onClick={changeCounter} />
+                        <input
+                            type="text"
+                            name="quantity"
+                            id={`order_item_${data.orderItem.id}`}
+                            ref={quantityRef}
+                            value={count}
+                            onChange={(e) => changeCounter(e)}
+                        />
+                        <input type="button" value="+" onClick={changeCounter} />
                     </div>
                 </form>
                 <button name="button" type="submit">
