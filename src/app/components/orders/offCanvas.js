@@ -15,7 +15,9 @@ export default function OffCanvas({ data }) {
                     </div>
 
                     <div className="offcanvas-body">
-                        <div className="order-items-list pb-4"><OrderItemList data={data.order_items} /></div>
+                        <div className="order-items-list pb-4">
+                            <OrderItemList data={data.order_items} />
+                        </div>
                     </div>
 
                     <div className="offcanvas-footer">

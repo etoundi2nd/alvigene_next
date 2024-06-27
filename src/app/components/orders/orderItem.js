@@ -36,6 +36,7 @@ import { useRef } from 'react'
 
 export default function OrderItem(data) {
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
+    const orderItem = data.orderItem
     const [count, setCount] = useState(data.orderItem.quantity)
     const formRef = useRef()
     const quantityRef = useRef()
@@ -47,19 +48,20 @@ export default function OrderItem(data) {
         if (value === '+') {
             value = count + 1
         } else if (value === '-') {
-            if (count > 1) {
-                value = count - 1
-            } else {
-                value = 1
-            }
+            value = count - 1
         }
 
         value = Number(value)
+        value = isNaN(value) ? 1 : value
+        value = value < 1 ? 1 : value
+
         setCount(value)
 
         quantityRef.current.value = value
 
-        formRef.current.requestSubmit()
+        if (value !== count) {
+            formRef.current.requestSubmit()
+        }
     }
 
     async function updateOrderItem(event) {
@@ -68,11 +70,11 @@ export default function OrderItem(data) {
         const formData = new FormData(event.currentTarget)
         const formEntries = { ...Object.fromEntries(formData.entries()) }
         const requestBody = {
-            order_id: formEntries.order_id,
+            order_id: orderItem.order_id,
             order_item: { quantity: formEntries.quantity }
         }
 
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${formEntries.order_item_id}`, {
+        const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -89,17 +91,13 @@ export default function OrderItem(data) {
     async function deleteOrderItem(event) {
         event.preventDefault()
 
-        const formData = new FormData(event.currentTarget)
-        const formEntries = { ...Object.fromEntries(formData.entries()) }
-        console.log(formEntries)
-
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${formEntries.id}`, {
+        const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'API-Key': process.env.DATA_API_KEY
             },
-            body: JSON.stringify(formEntries)
+            body: JSON.stringify({ order_id: orderItem.order_id })
         })
 
         const data = await res.json()
@@ -114,19 +112,19 @@ export default function OrderItem(data) {
     return (
         <div className="order-item">
             <div className="order-item--product mb-0-5">
-                <Link href={`/products/${data.orderItem.product.slug}`}>
+                <Link href={`/products/${orderItem.product.slug}`}>
                     <div className="card-img">
                         <Image width={200} height={200} alt="logo" className="img-fluid" src={product_image} style={{ width: '70%', height: '40%' }} />
                     </div>
                 </Link>
                 <div>
                     <h6>
-                        <Link href={`/products/${data.orderItem.product.slug}`}>
-                            <strong>{data.orderItem.product.title}</strong>
+                        <Link href={`/products/${orderItem.product.slug}`}>
+                            <strong>{orderItem.product.title}</strong>
                         </Link>
                     </h6>
                     <div>
-                        Prix unitaire: <strong>{data.orderItem.price}FCFA</strong>
+                        Prix unitaire: <strong>{orderItem.price}FCFA</strong>
                     </div>
                     <div>
                         Prix TTC: <strong>4 770FCFA</strong>
@@ -137,14 +135,12 @@ export default function OrderItem(data) {
 
             <div className="order-item--quantity d-flex flex-row">
                 <form ref={formRef} onSubmit={updateOrderItem}>
-                    <input type="hidden" name="order_item_id" value={`${data.orderItem.id}`} />
-                    <input type="hidden" name="order_id" value={`${data.orderItem.order_id}`} />
                     <div className="order-item--quantity-selector">
                         <input type="button" value="-" onClick={changeCounter} />
                         <input
                             type="text"
                             name="quantity"
-                            id={`order_item_${data.orderItem.id}`}
+                            id={`order_item_${orderItem.id}`}
                             ref={quantityRef}
                             value={count}
                             onChange={(e) => changeCounter(e)}
@@ -153,19 +149,9 @@ export default function OrderItem(data) {
                     </div>
                 </form>
 
-                <form onSubmit={deleteOrderItem}>
-                    <input type="hidden" name="id" value={`${data.orderItem.id}`} />
-                    <input type="hidden" name="order_id" value={`${data.orderItem.order_id}`} />
-                    <input
-                        type="hidden"
-                        name="authenticity_token"
-                        value="rNc6dCcJ5TyfGbGv6xh8s5KMRSYGBNFoW6NqEDrrFwg1BBrxplKo7cM9P96-cY0RU2JXG7PLxRnkjhhWZhc1Bw"
-                        autoComplete="off"
-                    />
-                    <button name="button" type="submit">
-                        supprimer
-                    </button>
-                </form>
+                <button name="button" type="submit" onClick={deleteOrderItem}>
+                    supprimer
+                </button>
             </div>
         </div>
     )
