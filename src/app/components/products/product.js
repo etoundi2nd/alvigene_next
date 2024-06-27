@@ -22,13 +22,13 @@ export default function Product({ product }) {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
-        console.log(Object.fromEntries(formData.entries()))
+        
         // We need to get the current user id from the session
         const requestBody = {
             current_user_id: getCurrentUserId(),
             ...Object.fromEntries(formData.entries())
         }
-        console.log(requestBody)
+
         const response = await fetch('http://localhost:3001/api/v1/order_items', {
             headers: {
                 'Content-Type': 'application/json'

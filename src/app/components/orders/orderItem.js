@@ -39,6 +39,7 @@ export default function OrderItem(data) {
     const [count, setCount] = useState(data.orderItem.quantity)
     const formRef = useRef()
     const quantityRef = useRef()
+    const [showOrderItem, setShowOrderItem] = useState(false)
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -46,7 +47,11 @@ export default function OrderItem(data) {
         if (value === '+') {
             value = count + 1
         } else if (value === '-') {
-            value = count - 1
+            if (count > 1) {
+                value = count - 1
+            } else {
+                value = 1
+            }
         }
 
         value = Number(value)
@@ -57,7 +62,7 @@ export default function OrderItem(data) {
         formRef.current.requestSubmit()
     }
 
-    async function UpdateOrderItem(event) {
+    async function updateOrderItem(event) {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
@@ -67,7 +72,6 @@ export default function OrderItem(data) {
             order_item: { quantity: formEntries.quantity }
         }
 
-        // 'use server'
         const res = await fetch(`http://localhost:3001/api/v1/order_items/${formEntries.order_item_id}`, {
             method: 'PUT',
             headers: {
@@ -79,6 +83,31 @@ export default function OrderItem(data) {
 
         const data = await res.json()
 
+        return data
+    }
+
+    async function deleteOrderItem(event) {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const formEntries = { ...Object.fromEntries(formData.entries()) }
+        console.log(formEntries)
+
+        const res = await fetch(`http://localhost:3001/api/v1/order_items/${formEntries.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'API-Key': process.env.DATA_API_KEY
+            },
+            body: JSON.stringify(formEntries)
+        })
+
+        const data = await res.json()
+
+        if (res.ok) {
+            console.log('Order item delete')
+            setShowOrderItem(false)
+        }
         return data
     }
 
@@ -107,7 +136,7 @@ export default function OrderItem(data) {
             </div>
 
             <div className="order-item--quantity d-flex flex-row">
-                <form ref={formRef} onSubmit={UpdateOrderItem}>
+                <form ref={formRef} onSubmit={updateOrderItem}>
                     <input type="hidden" name="order_item_id" value={`${data.orderItem.id}`} />
                     <input type="hidden" name="order_id" value={`${data.orderItem.order_id}`} />
                     <div className="order-item--quantity-selector">
@@ -123,9 +152,20 @@ export default function OrderItem(data) {
                         <input type="button" value="+" onClick={changeCounter} />
                     </div>
                 </form>
-                <button name="button" type="submit">
-                    supprimer
-                </button>
+
+                <form onSubmit={deleteOrderItem}>
+                    <input type="hidden" name="id" value={`${data.orderItem.id}`} />
+                    <input type="hidden" name="order_id" value={`${data.orderItem.order_id}`} />
+                    <input
+                        type="hidden"
+                        name="authenticity_token"
+                        value="rNc6dCcJ5TyfGbGv6xh8s5KMRSYGBNFoW6NqEDrrFwg1BBrxplKo7cM9P96-cY0RU2JXG7PLxRnkjhhWZhc1Bw"
+                        autoComplete="off"
+                    />
+                    <button name="button" type="submit">
+                        supprimer
+                    </button>
+                </form>
             </div>
         </div>
     )
