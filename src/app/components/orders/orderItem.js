@@ -35,12 +35,13 @@ import { useState } from 'react'
 import { useRef } from 'react'
 
 export default function OrderItem(data) {
+    // console.log(data)
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
     const orderItem = data.orderItem
     const [count, setCount] = useState(data.orderItem.quantity)
     const formRef = useRef()
     const quantityRef = useRef()
-    const [showOrderItem, setShowOrderItem] = useState(false)
+    const [showOrderItem, setShowOrderItem] = useState(true)
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -110,49 +111,53 @@ export default function OrderItem(data) {
     }
 
     return (
-        <div className="order-item">
-            <div className="order-item--product mb-0-5">
-                <Link href={`/products/${orderItem.product.slug}`}>
-                    <div className="card-img">
-                        <Image width={200} height={200} alt="logo" className="img-fluid" src={product_image} style={{ width: '70%', height: '40%' }} />
-                    </div>
-                </Link>
-                <div>
-                    <h6>
+        <>
+            {showOrderItem && (
+                <div className="order-item">
+                    <div className="order-item--product mb-0-5">
                         <Link href={`/products/${orderItem.product.slug}`}>
-                            <strong>{orderItem.product.title}</strong>
+                            <div className="card-img">
+                                <Image width={200} height={200} alt="logo" className="img-fluid" src={product_image} style={{ width: '70%', height: '40%' }} />
+                            </div>
                         </Link>
-                    </h6>
-                    <div>
-                        Prix unitaire: <strong>{orderItem.price}FCFA</strong>
+                        <div>
+                            <h6>
+                                <Link href={`/products/${orderItem.product.slug}`}>
+                                    <strong>{orderItem.product.title}</strong>
+                                </Link>
+                            </h6>
+                            <div>
+                                Prix unitaire: <strong>{orderItem.price}FCFA</strong>
+                            </div>
+                            <div>
+                                Prix TTC: <strong>4 770FCFA</strong>
+                                <small className="text-gray-600">(TVA: 19,25%)</small>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        Prix TTC: <strong>4 770FCFA</strong>
-                        <small className="text-gray-600">(TVA: 19,25%)</small>
+
+                    <div className="order-item--quantity d-flex flex-row">
+                        <form ref={formRef} onSubmit={updateOrderItem}>
+                            <div className="order-item--quantity-selector">
+                                <input type="button" value="-" onClick={changeCounter} />
+                                <input
+                                    type="text"
+                                    name="quantity"
+                                    id={`order_item_${orderItem.id}`}
+                                    ref={quantityRef}
+                                    value={count}
+                                    onChange={(e) => changeCounter(e)}
+                                />
+                                <input type="button" value="+" onClick={changeCounter} />
+                            </div>
+                        </form>
+
+                        <button name="button" type="submit" onClick={deleteOrderItem}>
+                            supprimer
+                        </button>
                     </div>
                 </div>
-            </div>
-
-            <div className="order-item--quantity d-flex flex-row">
-                <form ref={formRef} onSubmit={updateOrderItem}>
-                    <div className="order-item--quantity-selector">
-                        <input type="button" value="-" onClick={changeCounter} />
-                        <input
-                            type="text"
-                            name="quantity"
-                            id={`order_item_${orderItem.id}`}
-                            ref={quantityRef}
-                            value={count}
-                            onChange={(e) => changeCounter(e)}
-                        />
-                        <input type="button" value="+" onClick={changeCounter} />
-                    </div>
-                </form>
-
-                <button name="button" type="submit" onClick={deleteOrderItem}>
-                    supprimer
-                </button>
-            </div>
-        </div>
+            )}
+        </>
     )
 }

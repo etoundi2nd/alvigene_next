@@ -1,4 +1,3 @@
-// import OrderItems from "./orderItemList";
 import OrderItemList from './orderItemList'
 
 export default function OffCanvas({ data }) {
@@ -15,9 +14,7 @@ export default function OffCanvas({ data }) {
                     </div>
 
                     <div className="offcanvas-body">
-                        <div className="order-items-list pb-4">
-                            <OrderItemList data={data.order_items} />
-                        </div>
+                        <OrderItemList data={data.order_items} />
                     </div>
 
                     <div className="offcanvas-footer">
@@ -30,7 +27,7 @@ export default function OffCanvas({ data }) {
                 </div>
             </div>
 
-            <div className="canvas-offspace"></div>
+            {/* <div className="canvas-offspace"></div> */}
         </div>
     )
 }
