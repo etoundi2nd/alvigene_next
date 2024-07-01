@@ -15,9 +15,10 @@ export default function Product({ product }) {
     const { title, description, price, image_url, slug, id } = product
     const product_image = image_url ? image_url : '/products/No-Image-Placeholder.svg'
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([{id: 1, }])
     const [showOffCanvas, setShowOffCanvas] = useState(false)
-    const [ItemList, setOrderItemList] = useState({ orderItem: [data] })
+    // const [ItemList, setOrderItemList] = useState({ orderItem: [data] })
+    const [orderItemList, setOrderItemList] = useState([])
 
     async function onSubmit(event) {
         event.preventDefault()
@@ -43,19 +44,17 @@ export default function Product({ product }) {
             // console.log([...data, { orderItem: responseData }])
             // setData([...data, { orderItem: responseData }])
 
-            setData(responseData)
+            setData({...data, responseData})
             setShowOffCanvas(true)
         } else {
             console.log('Order item not created')
         }
+        return responseData
     }
-    // useEffect(() => {
-    //     console.log('Data updated:', data)
-    // }, [data])
 
-    function closeOffCanvas() {
-        setShowOffCanvas(false)
-    }
+
+
+
 
     return (
         <>
@@ -84,7 +83,7 @@ export default function Product({ product }) {
                                 type="submit"
                                 className="btn btn-sm btn-green border-green"
                                 // onClick={() => {
-                                //     setData([...data, { id }])
+                                //     setOrderItemList([...orderItemList, { id: id }])
                                 // }}
                             >
                                 Acheter
@@ -95,7 +94,7 @@ export default function Product({ product }) {
             </div>
 
             {showOffCanvas && data && (
-                <OffCanvas data={data} onClick={closeOffCanvas} />
+                <OffCanvas data={data} />
                 // <button onClick={closeOffCanvas}>Fermer</button>
             )}
         </>

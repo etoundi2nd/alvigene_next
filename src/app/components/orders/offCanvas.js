@@ -1,6 +1,10 @@
 import OrderItemList from './orderItemList'
+import { useState } from 'react'
 
 export default function OffCanvas({ data }) {
+   
+    console.log(data)
+
     return (
         <div className="offcanvas-backdrop d-block">
             <div className="offcanvas show">
@@ -13,9 +17,7 @@ export default function OffCanvas({ data }) {
                         <h5 className="title">Mon panier d'achat</h5>
                     </div>
 
-                    <div className="offcanvas-body">
-                        <OrderItemList data={data.order_items} />
-                    </div>
+                    <div className="offcanvas-body">{/* <OrderItemList data={data.order_items} /> */}</div>
 
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
