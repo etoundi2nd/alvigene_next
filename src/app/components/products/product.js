@@ -4,31 +4,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import POST from '../../queries/orderItems/post'
 import OffCanvas from '../orders/offCanvas'
-import React, { useState, useEffect } from 'react'
-
-function getCurrentUserId() {
-    localStorage.getItem('currentUserId') || localStorage.setItem('currentUserId', crypto.randomUUID())
-    return localStorage.getItem('currentUserId')
-}
+import { argumentWithUser } from '../../utils/currentUserId'
+import React, { useState } from 'react'
 
 export default function Product({ product }) {
     const { title, description, price, image_url, slug, id } = product
     const product_image = image_url ? image_url : '/products/No-Image-Placeholder.svg'
 
-    const [data, setData] = useState(null)
-    const [showOffCanvas, setShowOffCanvas] = useState([])
+    const [data, setData] = useState({})
+    const [showOffCanvas, setShowOffCanvas] = useState(false)
 
-    async function onSubmit(event) {
+    async function addToCart(event) {
         event.preventDefault()
 
-        const formData = new FormData(event.currentTarget)
-        console.log(Object.fromEntries(formData.entries()))
-        // We need to get the current user id from the session
-        const requestBody = {
-            current_user_id: getCurrentUserId(),
-            ...Object.fromEntries(formData.entries())
-        }
-        console.log(requestBody)
+        const requestBody = argumentWithUser({
+            product_id: id,
+            order_id: localStorage.getItem('order_id')
+        })
+
         const response = await fetch('http://localhost:3001/api/v1/order_items', {
             headers: {
                 'Content-Type': 'application/json'
@@ -39,19 +32,13 @@ export default function Product({ product }) {
 
         const responseData = await response.json()
         if (response.ok) {
-            console.log('Order item created')
             setData(responseData)
             setShowOffCanvas(true)
+            localStorage.setItem('order_id', responseData.id)
         } else {
+            // TODO: handle errors
             console.log('Order item not created')
         }
-    }
-
-    // const closeOffCanvas = () => {
-    //   setShowOffCanvas(false);
-    // };
-    function closeOffCanvas() {
-        setShowOffCanvas(false)
     }
 
     return (
@@ -74,21 +61,14 @@ export default function Product({ product }) {
                             <span className="product-price">{price}FCFA</span>
                             <small>TTC</small>
                         </div>
-                        {/* <form action="/orderItems" method="post" onSubmit={onSubmitVar}> */}
-                        <form onSubmit={onSubmit}>
-                            <input type="hidden" name="product_id" value={`${id}`} />
-                            <button type="submit" className="btn btn-sm btn-green border-green">
-                                Acheter
-                            </button>
-                        </form>
+                        <button onClick={addToCart} type="submit" className="btn btn-sm btn-green border-green">
+                            Acheter
+                        </button>
                     </div>
                 </div>
             </div>
 
-            {showOffCanvas && data && (
-                <OffCanvas data={data} onClick={closeOffCanvas} />
-                // <button onClick={closeOffCanvas}>Fermer</button>
-            )}
+            {showOffCanvas && data && <OffCanvas data={data} setShowOffCanvas={setShowOffCanvas} />}
         </>
     )
 }
