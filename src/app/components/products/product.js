@@ -4,12 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import POST from '../../queries/orderItems/post'
 import OffCanvas from '../orders/offCanvas'
-import React, { useState, useEffect } from 'react'
-
-function getCurrentUserId() {
-    localStorage.getItem('currentUserId') || localStorage.setItem('currentUserId', crypto.randomUUID())
-    return localStorage.getItem('currentUserId')
-}
+import { argumentWithUser } from '../../utils/currentUserId'
+import React, { useState } from 'react'
 
 export default function Product({ product }) {
     const { title, description, price, image_url, slug, id } = product
@@ -17,18 +13,14 @@ export default function Product({ product }) {
 
     const [data, setData] = useState({})
     const [showOffCanvas, setShowOffCanvas] = useState(false)
-    const [orderItemList, setOrderItemList] = useState([])
 
-    async function onSubmit(event) {
+    async function addToCart(event) {
         event.preventDefault()
 
-        const formData = new FormData(event.currentTarget)
-
-        // We need to get the current user id from the session
-        const requestBody = {
-            current_user_id: getCurrentUserId(),
-            ...Object.fromEntries(formData.entries())
-        }
+        const requestBody = argumentWithUser({
+            product_id: id,
+            order_id: localStorage.getItem('order_id')
+        })
 
         const response = await fetch('http://localhost:3001/api/v1/order_items', {
             headers: {
@@ -37,16 +29,14 @@ export default function Product({ product }) {
             method: 'POST',
             body: JSON.stringify(requestBody)
         })
+
         const responseData = await response.json()
         if (response.ok) {
-            console.log('Order item created')
-            // console.log([...data, { orderItem: responseData }])
-            // setData([...data, { orderItem: responseData }])
-
             setData(responseData)
-            // setData({ ...data, order_item: responseData })
             setShowOffCanvas(true)
+            localStorage.setItem('order_id', responseData.id)
         } else {
+            // TODO: handle errors
             console.log('Order item not created')
         }
     }
@@ -71,19 +61,9 @@ export default function Product({ product }) {
                             <span className="product-price">{price}FCFA</span>
                             <small>TTC</small>
                         </div>
-                        {/* <form action="/orderItems" method="post" onSubmit={onSubmitVar}> */}
-                        <form onSubmit={onSubmit}>
-                            <input type="hidden" name="product_id" value={`${id}`} />
-                            <button
-                                type="submit"
-                                className="btn btn-sm btn-green border-green"
-                                // onClick={() => {
-                                //     setOrderItemList([...orderItemList, { id: id }])
-                                // }}
-                            >
-                                Acheter
-                            </button>
-                        </form>
+                        <button onClick={addToCart} type="submit" className="btn btn-sm btn-green border-green">
+                            Acheter
+                        </button>
                     </div>
                 </div>
             </div>

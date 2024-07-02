@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
     // console.log(data.responseData)
-    
+
     function closeOffCanvas() {
         setShowOffCanvas(false)
     }
@@ -19,7 +19,9 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
                         <h5 className="title">Mon panier d'achat</h5>
                     </div>
 
-                    <div className="offcanvas-body"><OrderItemList data={data.order_items} /></div>
+                    <div className="offcanvas-body">
+                        <OrderItemList data={data.order_items} />
+                    </div>
 
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">

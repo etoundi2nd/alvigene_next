@@ -33,12 +33,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRef } from 'react'
+import { argumentWithUser } from '../../utils/currentUserId'
 
 export default function OrderItem(data) {
     // console.log(data)
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
     const orderItem = data.orderItem
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(data.orderItem.quantity)
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)
@@ -70,10 +71,10 @@ export default function OrderItem(data) {
 
         const formData = new FormData(event.currentTarget)
         const formEntries = { ...Object.fromEntries(formData.entries()) }
-        const requestBody = {
+        const requestBody = argumentWithUser({
             order_id: orderItem.order_id,
             order_item: { quantity: formEntries.quantity }
-        }
+        })
 
         const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'PUT',
@@ -98,7 +99,7 @@ export default function OrderItem(data) {
                 'Content-Type': 'application/json',
                 'API-Key': process.env.DATA_API_KEY
             },
-            body: JSON.stringify({ order_id: orderItem.order_id })
+            body: JSON.stringify(argumentWithUser({ order_id: orderItem.order_id }))
         })
 
         const data = await res.json()
