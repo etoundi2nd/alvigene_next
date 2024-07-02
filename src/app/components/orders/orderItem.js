@@ -38,7 +38,7 @@ export default function OrderItem(data) {
     // console.log(data)
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
     const orderItem = data.orderItem
-    const [count, setCount] = useState(data.orderItem.quantity)
+    const [count, setCount] = useState(1)
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function Navbar() {
+export default function Navbar({ count }) {
     return (
         <header id="js-header" className="header" data-controller="marketing--mobile">
             <div className="container">
@@ -24,19 +24,21 @@ export default function Navbar() {
                     </Link>
                     <div className="navbar-items navigation-links">
                         <Link href="/products">Produits</Link>
+                        <Link href="#">A-Propos</Link>
                         <Link href="/#testimonies">Testimonies</Link>
                     </div>
                     <div className="navbar-items items-as-icons">
                         <Link className="" href="/products">
-                            <i className="search-line"></i>
+                            <i className="ri-search-line"></i>
                         </Link>
                         <span className="shopping-basket-container">
-                            <Link className="" href="/orders">
-                                <i className="shopping-basket-fill"></i>
+                            <Link className="" href="">
+                                <i className="ri-shopping-basket-fill"></i>
+                                {count && <sup className="shopping-card-count">{count}</sup>}
                             </Link>
                         </span>
                         <Link className="d-md-none" href="#">
-                            <i className="user-3-fill"></i>
+                            <i className="ri-user-3-fill"></i>
                         </Link>
                     </div>
                 </nav>

@@ -15,9 +15,8 @@ export default function Product({ product }) {
     const { title, description, price, image_url, slug, id } = product
     const product_image = image_url ? image_url : '/products/No-Image-Placeholder.svg'
 
-    const [data, setData] = useState([{id: 1, }])
+    const [data, setData] = useState({})
     const [showOffCanvas, setShowOffCanvas] = useState(false)
-    // const [ItemList, setOrderItemList] = useState({ orderItem: [data] })
     const [orderItemList, setOrderItemList] = useState([])
 
     async function onSubmit(event) {
@@ -44,17 +43,13 @@ export default function Product({ product }) {
             // console.log([...data, { orderItem: responseData }])
             // setData([...data, { orderItem: responseData }])
 
-            setData({...data, responseData})
+            setData(responseData)
+            // setData({ ...data, order_item: responseData })
             setShowOffCanvas(true)
         } else {
             console.log('Order item not created')
         }
-        return responseData
     }
-
-
-
-
 
     return (
         <>
@@ -93,10 +88,7 @@ export default function Product({ product }) {
                 </div>
             </div>
 
-            {showOffCanvas && data && (
-                <OffCanvas data={data} />
-                // <button onClick={closeOffCanvas}>Fermer</button>
-            )}
+            {showOffCanvas && data && <OffCanvas data={data} setShowOffCanvas={setShowOffCanvas} />}
         </>
     )
 }
