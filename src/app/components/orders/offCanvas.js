@@ -1,14 +1,14 @@
 import OrderItemList from './orderItemList'
-import { useState } from 'react'
+import Link from 'next/link'
 
 export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
-    // console.log(data.responseData)
-
+    console.log(data)
     function closeOffCanvas() {
         setShowOffCanvas(false)
     }
+
     return (
-        <div className="offcanvas-backdrop d-block">
+        <div id="offcanvas" className="offcanvas-backdrop d-block">
             <div className="offcanvas show">
                 <div className="offcanvas-content">
                     <div className="offcanvas-header">
@@ -25,10 +25,18 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
 
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
-                            <span className="pe-1">Total de la commande:</span>
+                            <span className="pe-1">Total de la commande: {data.total_with_vat} FCFA</span>
                         </div>
 
-                        <div className="d-flex flex-row flex-wrap justify-content-between g-1"></div>
+                        <div className="d-flex flex-row flex-wrap justify-content-between g-1">
+                            <button className="btn btn-white me-1" onClick={closeOffCanvas}>
+                                Continuer mes achats
+                            </button>
+
+                            <Link className="btn btn-midnight-blue" href="/orders/new">
+                                Voir mon pannier
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

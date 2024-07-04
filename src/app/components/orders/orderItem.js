@@ -121,6 +121,21 @@ export default function OrderItem(data) {
                                 <Image width={200} height={200} alt="logo" className="img-fluid" src={product_image} style={{ width: '70%', height: '40%' }} />
                             </div>
                         </Link>
+                        {/* <Link className="me-1" href={`/products/${orderItem.product.slug}`}>
+                            <Image
+                            // width={200}
+                            // // height={200}
+                            // layout="fill"
+                            // objectFit="contain"
+                            // alt="logo"
+                            // // className="img-fluid"
+                            // src={product_image}
+                            // style={{
+                            //     width: '70%',
+                            //     height: '40%'
+                            // }}
+                            />
+                        </Link> */}
                         <div>
                             <h6>
                                 <Link href={`/products/${orderItem.product.slug}`}>
