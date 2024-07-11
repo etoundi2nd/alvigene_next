@@ -1,8 +1,10 @@
 import OrderItemList from './orderItemList'
 import Link from 'next/link'
+import { thousandSeparator } from '../../utils/priceSeparator'
+
 
 export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
-    console.log(data)
+
     function closeOffCanvas() {
         setShowOffCanvas(false)
     }
@@ -25,7 +27,8 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
 
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
-                            <span className="pe-1">Total de la commande: {data.total_with_vat} FCFA</span>
+                            <span className="pe-1">Total de la commande:</span>
+                            <strong>{thousandSeparator(data.methods.calculated_total_with_vat)} FCFA</strong>
                         </div>
 
                         <div className="d-flex flex-row flex-wrap justify-content-between g-1">
@@ -33,7 +36,7 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
                                 Continuer mes achats
                             </button>
 
-                            <Link className="btn btn-midnight-blue" href="/orders/new">
+                            <Link className="btn btn-midnight-blue" href="/orders">
                                 Voir mon pannier
                             </Link>
                         </div>

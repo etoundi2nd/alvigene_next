@@ -34,15 +34,16 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRef } from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
+import { thousandSeparator } from '../../utils/priceSeparator'
 
 export default function OrderItem(data) {
-    // console.log(data)
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
     const orderItem = data.orderItem
     const [count, setCount] = useState(data.orderItem.quantity)
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)
+    const [updateData, setUpdateData] = useState()
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -77,7 +78,7 @@ export default function OrderItem(data) {
         })
 
         const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'API-Key': process.env.DATA_API_KEY
@@ -86,10 +87,11 @@ export default function OrderItem(data) {
         })
 
         const data = await res.json()
+        setUpdateData(data)
 
         return data
     }
-
+    // console.log(updateData)
     async function deleteOrderItem(event) {
         event.preventDefault()
 
@@ -121,21 +123,6 @@ export default function OrderItem(data) {
                                 <Image width={200} height={200} alt="logo" className="img-fluid" src={product_image} style={{ width: '70%', height: '40%' }} />
                             </div>
                         </Link>
-                        {/* <Link className="me-1" href={`/products/${orderItem.product.slug}`}>
-                            <Image
-                            // width={200}
-                            // // height={200}
-                            // layout="fill"
-                            // objectFit="contain"
-                            // alt="logo"
-                            // // className="img-fluid"
-                            // src={product_image}
-                            // style={{
-                            //     width: '70%',
-                            //     height: '40%'
-                            // }}
-                            />
-                        </Link> */}
                         <div>
                             <h6>
                                 <Link href={`/products/${orderItem.product.slug}`}>
@@ -143,11 +130,14 @@ export default function OrderItem(data) {
                                 </Link>
                             </h6>
                             <div>
-                                Prix unitaire: <strong>{orderItem.price}FCFA</strong>
+                                Prix unitaire: <strong>{thousandSeparator(orderItem.price)} FCFA</strong>
                             </div>
                             <div>
-                                Prix TTC: <strong>4 770FCFA</strong>
-                                <small className="text-gray-600">(TVA: 19,25%)</small>
+                                Prix TTC:{' '}
+                                <strong>
+                                    {updateData ? thousandSeparator(updateData.method.price_with_vat) : thousandSeparator(orderItem.method.price_with_vat)} FCFA
+                                </strong>
+                                <small className="text-gray-600"> (TVA: 19,25%)</small>
                             </div>
                         </div>
                     </div>
