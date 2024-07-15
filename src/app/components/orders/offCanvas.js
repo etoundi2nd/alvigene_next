@@ -1,13 +1,13 @@
 import OrderItemList from './orderItemList'
 import Link from 'next/link'
-import { thousandSeparator } from '../../utils/priceSeparator'
-
+import formatPrice from '../../utils/formatPrice'
 
 export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
-
     function closeOffCanvas() {
         setShowOffCanvas(false)
     }
+    localStorage.setItem('article_total_number', data.article_total_number)
+    // console.log()
 
     return (
         <div id="offcanvas" className="offcanvas-backdrop d-block">
@@ -28,7 +28,7 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
                             <span className="pe-1">Total de la commande:</span>
-                            <strong>{thousandSeparator(data.methods.calculated_total_with_vat)} FCFA</strong>
+                            <strong>{formatPrice(data.calculated_total_with_vat)} FCFA</strong>
                         </div>
 
                         <div className="d-flex flex-row flex-wrap justify-content-between g-1">

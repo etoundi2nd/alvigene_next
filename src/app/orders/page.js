@@ -1,12 +1,42 @@
+
+import OrderItemList from '../components/orders/orderItemList'
+export async function getOrder() {
+    const res = await fetch('http://127.0.0.1:3001/api/v1/orders/new',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'API-Key': process.env.DATA_API_KEY
+        }
+    })
+
+     if (!res.ok) {
+         // This will activate the closest `error.js` Error Boundary
+         throw new Error('Failed to fetch data')
+     }
+
+    //  console.log(res.json)
+     const newOrder = await res.json
+     console.log(newOrder)
+    return res.json()
+
+    // console.log(data)
+    // return Response.json({ data })
+}
+
+
 export default function order() {
+    // const newOrder = await getOrder()
+    // console.log(newOrder)
+
     return (
         <main className="main">
             <div className="py-2 container ">
                 <h5 className="title text-center">Mon panier d'achat</h5>
 
                 <div className="d-flex flex-row mt-3 order-container">
+                    {/* <OrderItemList  /> */}
                     <div className="order-items-list">
-                        {/* <turbo-frame id="tf_order_item_card_683"> */}
+                        <turbo-frame id="tf_order_item_card_683">
                         <div className="order-item">
                             <div className="order-item--product mb-0-5">
                                 <a className="me-1" href="/products/1">
@@ -20,12 +50,12 @@ export default function order() {
                                     <div>
                                         Prix unitaire: <strong>1 000FCFA</strong>
                                     </div>
-                                    {/* <turbo-frame id="tf-price-with-vat-683"> */}
+                                    <turbo-frame id="tf-price-with-vat-683">
                                     <div>
                                         Prix TTC: <strong>1 193FCFA</strong>
                                         <small className="text-gray-600">(TVA: 19,25%)</small>
                                     </div>
-                                    {/* </turbo-frame> */}
+                                    </turbo-frame>
                                 </div>
                             </div>
 
@@ -34,9 +64,9 @@ export default function order() {
                                     <input type="hidden" name="_method" />
                                     <input type="hidden" name="authenticity_token" />
                                     <div className="order-item--quantity-selector">
-                                        <input type="submit" name="commit" value="-" />
-                                        <input id="order_item_quantity_683" type="text" value="1" name="order_item[quantity]" />
-                                        <input type="submit" name="commit" value="+" />
+                                        {/* <input type="submit" name="commit" value="-" /> */}
+                                        {/* <input id="order_item_quantity_683" type="text" value="1" name="order_item[quantity]" /> */}
+                                        {/* <input type="submit" name="commit" value="+" /> */}
                                     </div>
                                 </form>
                                 <form action="/order_items/683" method="post">
@@ -48,7 +78,7 @@ export default function order() {
                                 </form>{' '}
                             </div>
                         </div>
-                        {/* </turbo-frame> */}
+                        </turbo-frame>
                     </div>
 
                     <div className="order-summary">

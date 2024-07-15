@@ -34,7 +34,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRef } from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
-import { thousandSeparator } from '../../utils/priceSeparator'
+import formatPrice  from '../../utils/formatPrice'
 
 export default function OrderItem(data) {
     const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
@@ -91,7 +91,7 @@ export default function OrderItem(data) {
 
         return data
     }
-    // console.log(updateData)
+
     async function deleteOrderItem(event) {
         event.preventDefault()
 
@@ -130,13 +130,10 @@ export default function OrderItem(data) {
                                 </Link>
                             </h6>
                             <div>
-                                Prix unitaire: <strong>{thousandSeparator(orderItem.price)} FCFA</strong>
+                                Prix unitaire: <strong>{formatPrice(orderItem.price)} FCFA</strong>
                             </div>
                             <div>
-                                Prix TTC:{' '}
-                                <strong>
-                                    {updateData ? thousandSeparator(updateData.method.price_with_vat) : thousandSeparator(orderItem.method.price_with_vat)} FCFA
-                                </strong>
+                                Prix TTC: <strong>{updateData ? formatPrice(updateData.price_with_vat) : formatPrice(orderItem.price_with_vat)} FCFA</strong>
                                 <small className="text-gray-600"> (TVA: 19,25%)</small>
                             </div>
                         </div>

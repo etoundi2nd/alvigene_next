@@ -3,6 +3,8 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function Navbar({ count }) {
+    count = 1
+    // const articleTotalNumber = localStorage.getItem('article_total_number')
     return (
         <header id="js-header" className="header" data-controller="marketing--mobile">
             <div className="container">
@@ -34,7 +36,7 @@ export default function Navbar({ count }) {
                         <span className="shopping-basket-container">
                             <Link className="" href="">
                                 <i className="ri-shopping-basket-fill"></i>
-                                {count && <sup className="shopping-card-count">{count}</sup>}
+                                {count && <sup className="shopping-card-count">{}</sup>}
                             </Link>
                         </span>
                         <Link className="d-md-none" href="#">
