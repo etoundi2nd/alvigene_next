@@ -1,4 +1,3 @@
-import { Key } from 'react'
 import Product from './product'
 import getProductList from '../../queries/products/getProductList'
 

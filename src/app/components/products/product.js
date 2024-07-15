@@ -2,15 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import POST from '../../queries/orderItems/post'
 import OffCanvas from '../orders/offCanvas'
 import { argumentWithUser } from '../../utils/currentUserId'
 import React, { useState } from 'react'
+import productImageUrl from '../../utils/productImageUrl'
 
 export default function Product({ product }) {
-    const { title, description, price, image_url, slug, id } = product
-    const product_image = image_url ? image_url : '/products/No-Image-Placeholder.svg'
-
+    const { title, description, price, slug, id } = product
     const [data, setData] = useState({})
     const [showOffCanvas, setShowOffCanvas] = useState(false)
 
@@ -45,7 +43,14 @@ export default function Product({ product }) {
         <>
             <div className="card card-product">
                 <div className="card-img">
-                    <Image width={400} height={400} alt="logo" className="img-fluid" src={product_image} style={{ width: '100%', height: 'auto' }} />
+                    <Image
+                        width={400}
+                        height={400}
+                        alt="logo"
+                        className="img-fluid"
+                        src={productImageUrl(product.product_images_url[0])}
+                        style={{ width: '100%', height: 'auto' }}
+                    />
                 </div>
                 <div className="card-body">
                     <div>

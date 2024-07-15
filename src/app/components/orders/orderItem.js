@@ -34,10 +34,11 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRef } from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
-import formatPrice  from '../../utils/formatPrice'
+import formatPrice from '../../utils/formatPrice'
+import productImageUrl from '../../utils/productImageUrl'
 
 export default function OrderItem(data) {
-    const product_image = data.orderItem.product.image_url ? data.orderItem.product.image_url : '/products/No-Image-Placeholder.svg'
+    const product_image = productImageUrl(data.orderItem.product.product_images_url[0])
     const orderItem = data.orderItem
     const [count, setCount] = useState(data.orderItem.quantity)
     const formRef = useRef()
