@@ -29,10 +29,11 @@
 //     }
 // }
 
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
 import formatPrice from '../../utils/formatPrice'
 import productImageUrl from '../../utils/productImageUrl'
@@ -131,10 +132,10 @@ export default function OrderItem(data) {
                                 </Link>
                             </h6>
                             <div>
-                                Prix unitaire: <strong>{formatPrice(orderItem.price)} FCFA</strong>
+                                Prix unitaire: <strong>{formatPrice(orderItem.price)}</strong>
                             </div>
                             <div>
-                                Prix TTC: <strong>{updateData ? formatPrice(updateData.price_with_vat) : formatPrice(orderItem.price_with_vat)} FCFA</strong>
+                                Prix TTC: <strong>{updateData ? formatPrice(updateData.price_with_vat) : formatPrice(orderItem.price_with_vat)}</strong>
                                 <small className="text-gray-600"> (TVA: 19,25%)</small>
                             </div>
                         </div>

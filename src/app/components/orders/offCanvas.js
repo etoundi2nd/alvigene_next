@@ -1,14 +1,17 @@
 import OrderItemList from './orderItemList'
 import Link from 'next/link'
 import formatPrice from '../../utils/formatPrice'
+import { useState, useEffect } from 'react'
 
 export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
     function closeOffCanvas() {
         setShowOffCanvas(false)
     }
-    localStorage.setItem('article_total_number', data.article_total_number)
-    // console.log()
 
+   const orderId = data.id
+    localStorage.setItem('articleTotalNumber', data.article_total_number)
+
+    console.log(localStorage.getItem('articleTotalNumber'))
     return (
         <div id="offcanvas" className="offcanvas-backdrop d-block">
             <div className="offcanvas show">
@@ -28,7 +31,7 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
                             <span className="pe-1">Total de la commande:</span>
-                            <strong>{formatPrice(data.calculated_total_with_vat)} FCFA</strong>
+                            <strong>{formatPrice(data.calculated_total_with_vat)}</strong>
                         </div>
 
                         <div className="d-flex flex-row flex-wrap justify-content-between g-1">
@@ -36,7 +39,7 @@ export default function OffCanvas({ data, showOffCanvas, setShowOffCanvas }) {
                                 Continuer mes achats
                             </button>
 
-                            <Link className="btn btn-midnight-blue" href="/orders">
+                            <Link className="btn btn-midnight-blue" href={`/orders/${orderId}`}>
                                 Voir mon pannier
                             </Link>
                         </div>
