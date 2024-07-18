@@ -13,10 +13,15 @@ export const useCart = () => {
 }
 
 const CartProvider = ({ children }) => {
-    const [pendingOrder, setpendingOrder] = useState({})
+    const [pendingOrder, setPendingOrderState] = useState({})
     const [showOffcanvas, setShowOffcanvas] = useState(false)
 
-    return <CartContext.Provider value={{ pendingOrder, setpendingOrder, showOffcanvas, setShowOffcanvas }}>{children}</CartContext.Provider>
+    const setPendingOrder = (order) => {
+        localStorage.setItem('alvigene_next_cart_data', JSON.stringify(order))
+        setPendingOrderState(order)
+    }
+
+    return <CartContext.Provider value={{ pendingOrder, setPendingOrder, showOffcanvas, setShowOffcanvas }}>{children}</CartContext.Provider>
 }
 
 export default CartProvider

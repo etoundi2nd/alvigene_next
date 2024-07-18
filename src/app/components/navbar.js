@@ -6,10 +6,10 @@ import { useCart } from './contexts/CartContext'
 import { useEffect } from 'react'
 
 export default function Navbar() {
-    const { pendingOrder, setpendingOrder, setShowOffcanvas } = useCart()
+    const { pendingOrder, setPendingOrder, setShowOffcanvas } = useCart()
 
     useEffect(() => {
-        setpendingOrder(JSON.parse(localStorage.getItem('alvigene_next_cart_data') || '{}'))
+        setPendingOrder(JSON.parse(localStorage.getItem('alvigene_next_cart_data') || '{}'))
     }, [])
 
     const showOffCanvas = (event) => {

@@ -10,7 +10,7 @@ import formatPrice from '../../utils/formatPrice'
 
 export default function Product({ product }) {
     const { title, description, price, slug, id } = product
-    const { pendingOrder, setpendingOrder, setShowOffcanvas } = useCart()
+    const { pendingOrder, setPendingOrder, setShowOffcanvas } = useCart()
 
     async function addToCart(event) {
         event.preventDefault()
@@ -30,9 +30,7 @@ export default function Product({ product }) {
 
         const responseData = await response.json()
         if (response.ok) {
-            localStorage.setItem('alvigene_next_cart_data', JSON.stringify(responseData))
-
-            setpendingOrder(responseData)
+            setPendingOrder(responseData)
             setShowOffcanvas(true)
         } else {
             // TODO: handle errors

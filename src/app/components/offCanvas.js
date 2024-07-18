@@ -18,14 +18,12 @@ function cart({ pendingOrder, closeOffCanvas }) {
                         <h5 className="title">Mon panier d'achat</h5>
                     </div>
 
-                    <div className="offcanvas-body">
-                        <OrderItemList />
-                    </div>
+                    <div className="offcanvas-body">{pendingOrder.order_items && <OrderItemList />}</div>
 
                     <div className="offcanvas-footer">
                         <div className="d-flex flex-row flex-wrap justify-content-between mb-1-5">
                             <span className="pe-1">Total de la commande:</span>
-                            <strong>{formatPrice(pendingOrder.calculated_total_with_vat)}</strong>
+                            <strong>{pendingOrder.calculated_total_with_vat && formatPrice(pendingOrder.calculated_total_with_vat)}</strong>
                         </div>
 
                         <div className="d-flex flex-row flex-wrap justify-content-between g-1">

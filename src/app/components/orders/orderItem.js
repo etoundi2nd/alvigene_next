@@ -45,7 +45,7 @@ export default function OrderItem(data) {
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)
-    const { pendingOrder, setpendingOrder } = useCart()
+    const { setPendingOrder } = useCart()
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -79,7 +79,7 @@ export default function OrderItem(data) {
             order_item: { quantity: formEntries.quantity }
         })
 
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
+        const response = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,16 +88,19 @@ export default function OrderItem(data) {
             body: JSON.stringify(requestBody)
         })
 
-        const data = await res.json()
-        setpendingOrder(data)
+        const responseData = await response.json()
 
-        return data
+        if (response.ok) {
+            setPendingOrder(responseData)
+        }
+
+        return responseData
     }
 
     async function deleteOrderItem(event) {
         event.preventDefault()
 
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
+        const response = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -106,13 +109,14 @@ export default function OrderItem(data) {
             body: JSON.stringify(argumentWithUser({ order_id: orderItem.order_id }))
         })
 
-        const data = await res.json()
+        const responseData = await response.json()
 
-        if (res.ok) {
-            console.log('Order item delete')
+        if (response.ok) {
             setShowOrderItem(false)
+            setPendingOrder(responseData)
         }
-        return data
+
+        return responseData
     }
 
     return (
