@@ -33,10 +33,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext, useEffect} from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
 import formatPrice from '../../utils/formatPrice'
 import productImageUrl from '../../utils/productImageUrl'
+import { DataContext } from '../context'
 
 export default function OrderItem(data) {
     const product_image = productImageUrl(data.orderItem.product.product_images_url[0])
@@ -45,7 +46,8 @@ export default function OrderItem(data) {
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)
-    const [updateData, setUpdateData] = useState()
+    const { updateData, setUpdateData } = useContext(DataContext)
+    const [localUpdateData, setLocalUpdateData] = useState(orderItem)
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -89,7 +91,8 @@ export default function OrderItem(data) {
         })
 
         const data = await res.json()
-        setUpdateData(data)
+        setLocalUpdateData(data)
+        // setUpdateData((prevData) => ({ ...prevData, [orderItem.id]: data }))
 
         return data
     }
@@ -135,7 +138,10 @@ export default function OrderItem(data) {
                                 Prix unitaire: <strong>{formatPrice(orderItem.price)}</strong>
                             </div>
                             <div>
-                                Prix TTC: <strong>{updateData ? formatPrice(updateData.price_with_vat) : formatPrice(orderItem.price_with_vat)}</strong>
+                                Prix TTC:{' '}
+                                <strong>
+                                    {localUpdateData.price_with_vat ? formatPrice(localUpdateData.price_with_vat) : formatPrice(orderItem.price_with_vat)}
+                                </strong>
                                 <small className="text-gray-600"> (TVA: 19,25%)</small>
                             </div>
                         </div>

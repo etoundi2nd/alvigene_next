@@ -5,7 +5,7 @@ import formatPrice from "../../utils/formatPrice";
 export default async function Page({ params: { orderId } }) {
     const actualOrder = await getOrder(orderId)
     const shipping = 2000
-    
+
     return (
         <main className="main">
             <div className="py-2 container ">

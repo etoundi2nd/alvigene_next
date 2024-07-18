@@ -21,6 +21,7 @@ export default function Product({ product }) {
         })
 
         const response = await fetch('http://localhost:3001/api/v1/order_items', {
+            cache: 'no-store',
             headers: {
                 'Content-Type': 'application/json'
             },
