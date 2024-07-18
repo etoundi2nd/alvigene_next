@@ -36,6 +36,7 @@ import { useRef } from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
 import formatPrice from '../../utils/formatPrice'
 import productImageUrl from '../../utils/productImageUrl'
+import { useCart } from '../contexts/CartContext'
 
 export default function OrderItem(data) {
     const product_image = productImageUrl(data.orderItem.product.product_images_url[0])
@@ -44,7 +45,7 @@ export default function OrderItem(data) {
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)
-    const [updateData, setUpdateData] = useState()
+    const { pendingOrder, setpendingOrder } = useCart()
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -88,7 +89,7 @@ export default function OrderItem(data) {
         })
 
         const data = await res.json()
-        setUpdateData(data)
+        setpendingOrder(data)
 
         return data
     }
@@ -131,10 +132,10 @@ export default function OrderItem(data) {
                                 </Link>
                             </h6>
                             <div>
-                                Prix unitaire: <strong>{formatPrice(orderItem.price)} FCFA</strong>
+                                Prix unitaire: <strong>{formatPrice(orderItem.price)}</strong>
                             </div>
                             <div>
-                                Prix TTC: <strong>{updateData ? formatPrice(updateData.price_with_vat) : formatPrice(orderItem.price_with_vat)} FCFA</strong>
+                                Prix TTC: <strong>{formatPrice(orderItem.price_with_vat)}</strong>
                                 <small className="text-gray-600"> (TVA: 19,25%)</small>
                             </div>
                         </div>

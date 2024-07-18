@@ -1,10 +1,22 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { useCart } from './contexts/CartContext'
+import { useEffect } from 'react'
 
-export default function Navbar({ count }) {
-    count = 1
-    // const articleTotalNumber = localStorage.getItem('article_total_number')
+export default function Navbar() {
+    const { pendingOrder, setpendingOrder, setShowOffcanvas } = useCart()
+
+    useEffect(() => {
+        setpendingOrder(JSON.parse(localStorage.getItem('alvigene_next_cart_data') || '{}'))
+    }, [])
+
+    const showOffCanvas = (event) => {
+        event.preventDefault()
+        setShowOffcanvas(true)
+    }
+
     return (
         <header id="js-header" className="header" data-controller="marketing--mobile">
             <div className="container">
@@ -34,9 +46,9 @@ export default function Navbar({ count }) {
                             <i className="ri-search-line"></i>
                         </Link>
                         <span className="shopping-basket-container">
-                            <Link className="" href="">
+                            <Link className="" href="" onClick={showOffCanvas}>
                                 <i className="ri-shopping-basket-fill"></i>
-                                {count && <sup className="shopping-card-count">{}</sup>}
+                                {pendingOrder.article_total_number > 0 && <sup className="shopping-card-count">{pendingOrder.article_total_number}</sup>}
                             </Link>
                         </span>
                         <Link className="d-md-none" href="#">
