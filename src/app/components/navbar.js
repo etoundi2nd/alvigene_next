@@ -2,17 +2,20 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { useEffect, useState } from 'react'
+import { useCart } from './contexts/CartContext'
+import { useEffect } from 'react'
 
 export default function Navbar() {
-    const [count, setCount] = useState()
-     useEffect(() => {
-         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-             const totalNumber = localStorage.getItem('articleTotalNumber')
-             setCount(totalNumber)
-         }
-     }, [])
+    const { pendingOrder, setPendingOrder, setShowOffcanvas } = useCart()
+
+    useEffect(() => {
+        setPendingOrder(JSON.parse(localStorage.getItem('alvigene_next_cart_data') || '{}'))
+    }, [])
+
+    const showOffCanvas = (event) => {
+        event.preventDefault()
+        setShowOffcanvas(true)
+    }
 
     return (
         <header id="js-header" className="header" data-controller="marketing--mobile">
@@ -43,9 +46,9 @@ export default function Navbar() {
                             <i className="ri-search-line"></i>
                         </Link>
                         <span className="shopping-basket-container">
-                            <Link className="" href="">
+                            <Link className="" href="" onClick={showOffCanvas}>
                                 <i className="ri-shopping-basket-fill"></i>
-                                {(count !== 0)&& <sup className="shopping-card-count">{count}</sup>}
+                                {pendingOrder.article_total_number > 0 && <sup className="shopping-card-count">{pendingOrder.article_total_number}</sup>}
                             </Link>
                         </span>
                         <Link className="d-md-none" href="#">

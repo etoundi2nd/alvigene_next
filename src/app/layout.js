@@ -4,6 +4,8 @@ import { noto_serif_display, inter } from './fonts'
 import Footer from './components/footer'
 import React from 'react'
 import Navbar from './components/navbar'
+import OffCanvas from './components/offCanvas'
+import CartProvider from './components/contexts/CartContext'
 
 const fonts_variables = `${noto_serif_display.className} ${inter.className}`
 
@@ -20,11 +22,14 @@ export default function RootLayout({ children }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>{metadata.title}</title>
                 <meta name="description" content={metadata.description} />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
             <body className={fonts_variables} data-controller="marketing--offset-canvas">
-                <Navbar />
-                {children}
+                <CartProvider>
+                    <Navbar />
+                    {children}
+                    <OffCanvas />
+                </CartProvider>
                 <Footer />
             </body>
         </html>

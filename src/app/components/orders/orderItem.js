@@ -37,7 +37,7 @@ import { useState, useRef, useContext, useEffect} from 'react'
 import { argumentWithUser } from '../../utils/currentUserId'
 import formatPrice from '../../utils/formatPrice'
 import productImageUrl from '../../utils/productImageUrl'
-import { DataContext } from '../context'
+import { useCart } from '../contexts/CartContext'
 
 export default function OrderItem(data) {
     const product_image = productImageUrl(data.orderItem.product.product_images_url[0])
@@ -46,8 +46,7 @@ export default function OrderItem(data) {
     const formRef = useRef()
     const quantityRef = useRef()
     const [showOrderItem, setShowOrderItem] = useState(true)
-    const { updateData, setUpdateData } = useContext(DataContext)
-    const [localUpdateData, setLocalUpdateData] = useState(orderItem)
+    const { setPendingOrder } = useCart()
 
     const changeCounter = (event) => {
         let value = event.target.value
@@ -81,7 +80,7 @@ export default function OrderItem(data) {
             order_item: { quantity: formEntries.quantity }
         })
 
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
+        const response = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,17 +89,19 @@ export default function OrderItem(data) {
             body: JSON.stringify(requestBody)
         })
 
-        const data = await res.json()
-        setLocalUpdateData(data)
-        // setUpdateData((prevData) => ({ ...prevData, [orderItem.id]: data }))
+        const responseData = await response.json()
 
-        return data
+        if (response.ok) {
+            setPendingOrder(responseData)
+        }
+
+        return responseData
     }
 
     async function deleteOrderItem(event) {
         event.preventDefault()
 
-        const res = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
+        const response = await fetch(`http://localhost:3001/api/v1/order_items/${orderItem.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -109,13 +110,14 @@ export default function OrderItem(data) {
             body: JSON.stringify(argumentWithUser({ order_id: orderItem.order_id }))
         })
 
-        const data = await res.json()
+        const responseData = await response.json()
 
-        if (res.ok) {
-            console.log('Order item delete')
+        if (response.ok) {
             setShowOrderItem(false)
+            setPendingOrder(responseData)
         }
-        return data
+
+        return responseData
     }
 
     return (
@@ -138,10 +140,7 @@ export default function OrderItem(data) {
                                 Prix unitaire: <strong>{formatPrice(orderItem.price)}</strong>
                             </div>
                             <div>
-                                Prix TTC:{' '}
-                                <strong>
-                                    {localUpdateData.price_with_vat ? formatPrice(localUpdateData.price_with_vat) : formatPrice(orderItem.price_with_vat)}
-                                </strong>
+                                Prix TTC: <strong>{formatPrice(orderItem.price_with_vat)}</strong>
                                 <small className="text-gray-600"> (TVA: 19,25%)</small>
                             </div>
                         </div>
