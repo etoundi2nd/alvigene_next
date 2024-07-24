@@ -39,7 +39,7 @@ export default function Navbar() {
                     <div className="navbar-items navigation-links">
                         <Link href="/products">Produits</Link>
                         <Link href="#">A-Propos</Link>
-                        <Link href="/#testimonies">Testimonies</Link>
+                        <Link href="/testimonies">Testimonies</Link>
                     </div>
                     <div className="navbar-items items-as-icons">
                         <Link className="" href="/products">
@@ -61,7 +61,7 @@ export default function Navbar() {
                 <Link href="/products" suppressHydrationWarning={true}>
                     Produits
                 </Link>
-                <Link href="/#testimonies" suppressHydrationWarning={true}>
+                <Link href="/testimonies" suppressHydrationWarning={true}>
                     Testimonies
                 </Link>
             </nav>

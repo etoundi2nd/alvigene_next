@@ -9,7 +9,7 @@ import productImageUrl from '../../utils/productImageUrl'
 import formatPrice from '../../utils/formatPrice'
 
 export default function Product({ product }) {
-    const { title, description, price, slug, id } = product
+    const { title, short_description, price, slug, id } = product
     const { pendingOrder, setPendingOrder, setShowOffcanvas } = useCart()
 
     async function addToCart(event) {
@@ -54,13 +54,13 @@ export default function Product({ product }) {
                 </div>
                 <div className="card-body">
                     <div>
-                        <span className="name" style={{ textdecoration: 'none !important' }}>
+                        <span className="name">
                             <Link href={`/products/${slug}`}>
                                 <strong>{title}</strong>
                             </Link>
                         </span>
                     </div>
-                    <p className="description mb-1">{description}</p>
+                    <p className="description mb-1">{short_description}</p>
                     <div className="price-cta">
                         <div>
                             <span className="product-price">{formatPrice(price)}</span> <small>TTC</small>

@@ -1,5 +1,5 @@
 async function getProductList() {
-    const res = await fetch('http://127.0.0.1:3001/api/v1/products', { cache: 'reload' })
+    const res = await fetch('http://127.0.0.1:3001/api/v1/products', { next: { revalidate: 3600 }})
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
