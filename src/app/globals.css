@@ -1249,7 +1249,7 @@ button {
 }
 .index-our-customers .index-our-customers--content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 .index-our-customers .index-our-customers--content .navigation {
