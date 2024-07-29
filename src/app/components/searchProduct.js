@@ -1,22 +1,17 @@
 'use client'
 
+import getProductList from '../queries/products/getProductList'
 import { useState } from 'react'
-import { useProduct } from './contexts/ProductContext'
 
-export default function searchProduct() {
+export default function searchProduct({ setProductSearch }) {
     const [search, setSearch] = useState('')
-    const { setProductList } = useProduct()
 
     async function searchParams(event) {
         event.preventDefault()
 
-        const response = await fetch(`http://localhost:3001/api/v1/quick_search?search=${search}`)
+        const response = await getProductList(search)
 
-        const responseData = await response.json()
-
-        if (response.ok) {
-            setProductList(responseData)
-        }
+        setProductSearch(response)
     }
 
     return (
@@ -26,14 +21,7 @@ export default function searchProduct() {
                     <i className="ri-search-line"></i>
                 </button>
 
-                <input
-                    type="text"
-                    name="search"
-                    id="search"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Chercher nos produits"
-                />
+                <input type="text" name="search" id="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Chercher nos produits" />
 
                 <button name="button" type="button">
                     <i className="ri-close-fill js-close-search"></i>

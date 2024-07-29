@@ -6,7 +6,6 @@ import React from 'react'
 import Navbar from './components/navbar'
 import OffCanvas from './components/offCanvas'
 import CartProvider from './components/contexts/CartContext'
-import ProductProvider from './components/contexts/ProductContext'
 
 const fonts_variables = `${noto_serif_display.className} ${inter.className}`
 
@@ -27,11 +26,9 @@ export default function RootLayout({ children }) {
             </head>
             <body className={fonts_variables} data-controller="marketing--offset-canvas">
                 <CartProvider>
-                    <ProductProvider>
-                        <Navbar />
-                        {children}
-                        <OffCanvas />
-                    </ProductProvider>
+                    <Navbar />
+                    {children}
+                    <OffCanvas />
                 </CartProvider>
                 <Footer />
             </body>

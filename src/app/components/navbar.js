@@ -4,9 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useCart } from './contexts/CartContext'
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
 
 export default function Navbar() {
     const { pendingOrder, setPendingOrder, setShowOffcanvas } = useCart()
+    const pathname = usePathname()
 
     useEffect(() => {
         setPendingOrder(JSON.parse(localStorage.getItem('alvigene_next_cart_data') || '{}'))
@@ -28,6 +31,7 @@ export default function Navbar() {
                         <span></span>
                     </div>
                     <Link className="navbar-logo" href="/" suppressHydrationWarning={true}>
+                     
                         <Image
                             width={300}
                             height={300}
@@ -37,9 +41,15 @@ export default function Navbar() {
                         />
                     </Link>
                     <div className="navbar-items navigation-links">
-                        <Link href="/products">Produits</Link>
-                        <Link href="#">A-Propos</Link>
-                        <Link href="/testimonies">Testimonies</Link>
+                        <Link className={clsx('', { 'text-citrus-green': pathname === '/products' })} href="/products">
+                            Produits
+                        </Link>
+                        <Link className={clsx('', { 'text-citrus-green': pathname === '#' })} href="#">
+                            A-Propos
+                        </Link>
+                        <Link className={clsx('', { 'text-citrus-green': pathname === '/testimonies' })} href="/testimonies">
+                            Testimonies
+                        </Link>
                     </div>
                     <div className="navbar-items items-as-icons">
                         <Link className="" href="/products">
@@ -58,10 +68,10 @@ export default function Navbar() {
                 </nav>
             </div>
             <nav className="mobile-menu" data-marketing--mobile-target="menu">
-                <Link href="/products" suppressHydrationWarning={true}>
+                <Link className={clsx('', { 'text-citrus-green': pathname === '/products' })} href="/products" suppressHydrationWarning={true}>
                     Produits
                 </Link>
-                <Link href="/testimonies" suppressHydrationWarning={true}>
+                <Link className={clsx('', { 'text-citrus-green': pathname === '/testimonies' })} href="/testimonies" suppressHydrationWarning={true}>
                     Testimonies
                 </Link>
             </nav>

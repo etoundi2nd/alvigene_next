@@ -2,19 +2,16 @@
 import Product from './product'
 import getProductList from '../../queries/products/getProductList'
 import { useEffect, useState } from 'react'
-import { useProduct } from '../contexts/ProductContext'
 
-export default function ProductList() {
-
-    const [products, setProducts] = useState([])
-    const { researchProduct } = useProduct()
-    const productFetch = Object.keys(researchProduct).length !== 0 ? researchProduct : products
+export default function ProductList({ productSearch }) {
+    const [productList, setProductList] = useState([])
+    const productFetch = productSearch ? productSearch : productList
 
     useEffect(() => {
         async function fetchProduct() {
             try {
-                const productList = await getProductList()
-                setProducts(productList)
+                const product = await getProductList()
+                setProductList(product)
             } catch (error) {
                 console.error('Error fetching search results:', error)
             }
