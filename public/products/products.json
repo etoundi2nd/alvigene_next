@@ -1,0 +1,71 @@
+[
+    {
+        "id": 2,
+        "title": "Savons Bio Alvigène à la bave d'escargot et miel",
+        "base_price": "1200.0",
+        "price": "1200.0",
+        "discount_rate": 5,
+        "slug": "savons-bio-alvigene-a-la-bave-d-escargot-et-miel",
+        "short_description": "Notre savon orignal à la bave pure et la coquille d'escargot et du miel",
+        "description": "Some description",
+        "ingredients": "Some ingredients",
+        "instructions": "Some instructions",
+        "warning": "Some warnings",
+        "sku": 500,
+        "max_delivery_days": 15,
+        "min_delivery_days": 2,
+        "created_at": "2024-06-05T00:08:31.471+01:00",
+        "updated_at": "2024-07-24T11:04:28.594+01:00",
+        "products_category_id": 1,
+        "taxation_id": 1,
+        "product_images_url": [
+            "http://localhost:3001/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR0Z3WTNaeU5EQm1lV3BrTW5KMWNqSm9lR0Z6Y1RGdE9UQXlhd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVlocGJteHBibVU3SUdacGJHVnVZVzFsUFNKaGJIWnBaMlZ1WlY5emIyRndYMkpoY2w5emJtRnBiRjl6YkdsdFpWOWhibVJmYUc5dVpYbGZZMjkyWlhJdWFuQm5JanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWRoYkhacFoyVnVaVjl6YjJGd1gySmhjbDl6Ym1GcGJGOXpiR2x0WlY5aGJtUmZhRzl1WlhsZlkyOTJaWEl1YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDI0LTA3LTMwVDE1OjI1OjIwLjEzM1oiLCJwdXIiOiJibG9iX2tleSJ9fQ==--d3f0529efe2d280985b54cd53c7c7711254e4161/alvigene_soap_bar_snail_slime_and_honey_cover.jpg"
+        ]
+    },
+    {
+        "id": 1,
+        "title": "Savons Bio Alvigène à la bave pure d'escargot",
+        "base_price": "1000.0",
+        "price": "1000.0",
+        "discount_rate": 5,
+        "slug": "savons-bio-alvigene-a-la-bave-pure-d-escargot",
+        "short_description": "Notre savon orignal à la bave pure et la coquille d'escargot",
+        "description": "Some description",
+        "ingredients": "Some ingredients",
+        "instructions": "Some instructions",
+        "warning": "Some warnings",
+        "sku": 500,
+        "max_delivery_days": 15,
+        "min_delivery_days": 2,
+        "created_at": "2024-06-05T00:08:31.459+01:00",
+        "updated_at": "2024-07-24T11:05:35.173+01:00",
+        "products_category_id": 1,
+        "taxation_id": 1,
+        "product_images_url": [
+            "http://localhost:3001/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhiRFppY0daMVozYzFhR28xTjJJMmIyWjROSFEzZVc1amNEWndjd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVlCcGJteHBibVU3SUdacGJHVnVZVzFsUFNKaGJIWnBaMlZ1WlY5emIyRndYMkpoY2w5emJtRnBiRjl6YkdsdFpWOWpiM1psY2w5bmNtVmxiaTVxY0djaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkoyRnNkbWxuWlc1bFgzTnZZWEJmWW1GeVgzTnVZV2xzWDNOc2FXMWxYMk52ZG1WeVgyZHlaV1Z1TG1wd1p3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEMmx0WVdkbEwycHdaV2NHT3daVU9oRnpaWEoyYVdObFgyNWhiV1U2Q214dlkyRnMiLCJleHAiOiIyMDI0LTA3LTMwVDE1OjI1OjIwLjE0NFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--da0d38030d28af8871b6e818a673b5287157f23e/alvigene_soap_bar_snail_slime_cover_green.jpg"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Savons Bio Alvigène à la bave d'escargot et citron",
+        "base_price": "1300.0",
+        "price": "1300.0",
+        "discount_rate": 5,
+        "slug": "savons-bio-alvigene-a-la-bave-d-escargot-et-citron",
+        "short_description": "Notre savon orignal à la bave pure et la coquille d'escargot et du citron",
+        "description": "Some description",
+        "ingredients": "Some ingredients",
+        "instructions": "Some instructions",
+        "warning": "Some warnings",
+        "sku": 500,
+        "max_delivery_days": 15,
+        "min_delivery_days": 2,
+        "created_at": "2024-06-05T00:08:31.481+01:00",
+        "updated_at": "2024-07-24T11:07:23.728+01:00",
+        "products_category_id": 1,
+        "taxation_id": 1,
+        "product_images_url": [
+            "http://localhost:3001/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbTl5ZVdsMWRtWjBaSFZ3WVdNMmJERXlkbUl6Ylc5amN6TjNhZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVlocGJteHBibVU3SUdacGJHVnVZVzFsUFNKaGJIWnBaMlZ1WlY5emIyRndYMkpoY2w5emJtRnBiRjl6YkdsdFpWOWhibVJmYkdWdGIyNWZZMjkyWlhJdWFuQm5JanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWRoYkhacFoyVnVaVjl6YjJGd1gySmhjbDl6Ym1GcGJGOXpiR2x0WlY5aGJtUmZiR1Z0YjI1ZlkyOTJaWEl1YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDI0LTA3LTMwVDE1OjI1OjIwLjE1OFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--a1c1982aafc962d364dce56ad56334a369e92fa7/alvigene_soap_bar_snail_slime_and_lemon_cover.jpg"
+        ]
+    }
+]
