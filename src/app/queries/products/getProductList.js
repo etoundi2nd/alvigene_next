@@ -1,5 +1,6 @@
-async function getProductList(search = '') {
-    const res = await fetch(`http://127.0.0.1:3001/api/v1/products?search=${search}`, { next: { revalidate: 3600 } })
+async function getProductList(updatedAtMax = '') {
+
+    const res = await fetch(`http://127.0.0.1:3001/api/v1/products?highest_updated_at=${updatedAtMax}`, { next: { revalidate: 3600 } })
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
