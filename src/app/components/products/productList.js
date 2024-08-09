@@ -1,5 +1,5 @@
 import Product from './product'
-import getProductList from '../../queries/products/getProductList'
+// import getProductList from '../../queries/products/getProductList.js/index.js'
 import products from '../../../../public/products/products.json'
 
 export default function ProductList({ productSearch }) {

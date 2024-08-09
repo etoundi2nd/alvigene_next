@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+    // experimental: {
+    //     instrumentationHook: true
+    // },
     compiler: {
         // Enables the styled-components SWC transform
         styledComponents: true
@@ -16,4 +20,4 @@ const nextConfig = {
     }
 }
 
-module.exports = nextConfig
+export default nextConfig

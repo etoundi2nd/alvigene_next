@@ -1,9 +1,16 @@
-import getProductList from './getProductList'
-import products from '../../../../public/products/products.json'
-import {saveJSON } from '../../utils/readWriteJson'
+import getProductList from './getProductList.js'
+// import products from '../../../../public/products/products.json' assert { type: 'json' }
+import { saveJSON, loadJSON } from '../../utils/readWriteJson.js'
 
-export default async function getProductListJson() {
-    const data = products
+async function getProductListJson() {
+    const filePath = path.join(process.cwd(), 'public/products/products.json')
+
+    // Ensure the directory exists before writing the file
+    fs.mkdir(path.dirname(filePath), { recursive: true })
+
+    // const data = products
+    const data = loadJSON(filePath)
+    console.log(data)
 
     if (Object.keys(products).length === 0) {
         const product = await getProductList()
@@ -26,3 +33,5 @@ export default async function getProductListJson() {
 
     return data
 }
+
+export default getProductListJson
