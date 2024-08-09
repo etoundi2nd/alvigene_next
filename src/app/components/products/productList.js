@@ -1,24 +1,9 @@
-'use client'
 import Product from './product'
-import getProductList from '../../queries/products/getProductList'
-import { useEffect, useState } from 'react'
+// import getProductList from '../../queries/products/getProductList.js/index.js'
+import products from '../../../../public/products/products.json'
 
 export default function ProductList({ productSearch }) {
-    const [productList, setProductList] = useState([])
-    const productFetch = productSearch ? productSearch : productList
-
-    useEffect(() => {
-        async function fetchProduct() {
-            try {
-                const product = await getProductList()
-                setProductList(product)
-            } catch (error) {
-                console.error('Error fetching search results:', error)
-            }
-        }
-
-        fetchProduct()
-    }, [])
+    const productFetch = productSearch ? productSearch : products
 
     return (
         <>

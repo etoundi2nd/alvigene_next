@@ -1,6 +1,7 @@
 'use client'
 
-import getProductList from '../queries/products/getProductList'
+// import getProductList from '../queries/products/getProductList'
+import products from '../../../public/products/products.json'
 import { useState } from 'react'
 
 export default function searchProduct({ setProductSearch }) {
@@ -9,9 +10,16 @@ export default function searchProduct({ setProductSearch }) {
     async function searchParams(event) {
         event.preventDefault()
 
-        const response = await getProductList(search)
+        const searchTerm = search.toLowerCase()
+        const filteredProducts = products.filter(
+            (product) =>
+                product.title.toLowerCase().includes(searchTerm) ||
+                product.short_description.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+        )
+        // const response = await getProductList(search)
 
-        setProductSearch(response)
+        setProductSearch(filteredProducts)
     }
 
     return (
